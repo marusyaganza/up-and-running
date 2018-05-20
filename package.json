@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "lint": "eslint --quiet app/ --ext .js"
+    "lint": "eslint ."
   },
   "author": "Marusya Ganza",
   "license": "ISC",
