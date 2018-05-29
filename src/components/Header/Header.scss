@@ -1,1 +1,33 @@
+header {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  background: silver;
+  margin-bottom: 100px;
+}
 
+nav li {
+  list-style: none;
+  float: right;
+  display: inline-block;
+  margin: -4px 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+nav li:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.item {
+  color: red;
+}
