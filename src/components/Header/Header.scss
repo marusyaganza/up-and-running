@@ -14,20 +14,23 @@ nav li {
   list-style: none;
   float: right;
   display: inline-block;
-  margin: -4px 15px;
+  margin: 0 15px;
 }
 
 nav a {
+  //padding:10px;
   text-decoration: none;
   color: #000;
 }
 
-nav li:after {
+/*nav li:after {
   display: block;
   clear: both;
   content: '';
-}
+}*/
 
-.item {
+.logo {
+  text-transform: uppercase;
+  margin:0 20px;
   color: red;
 }

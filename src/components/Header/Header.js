@@ -6,6 +6,7 @@ class Header extends Component {
         const navItem = [1, 2, 3, 4, 5].map(i => <li> <a href="#"> item { i } </a></li>);
         return (
             <header>
+                <div className="logo">Logo</div>
                 <nav>
                     <ul>{ navItem }</ul>
                 </nav>

@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackMd5Hash = require('webpack-md5-hash');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -20,11 +21,12 @@ module.exports = {
             },
             {
                 test: /\.s?css$/,
-                use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader',  'postcss-loader', 'sass-loader']
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin('dist', {} ),
         new HtmlWebpackPlugin({
             inject: false,
             hash: true,
