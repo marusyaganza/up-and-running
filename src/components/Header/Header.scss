@@ -1,5 +1,4 @@
 header {
-  margin: 0;
   padding: 0;
   position: fixed;
   top: 0;
@@ -7,7 +6,7 @@ header {
   height: 40px;
   width: 100%;
   background: silver;
-  margin-bottom: 100px;
+  margin: 0 0 100px;
 }
 
 nav li {
@@ -18,19 +17,12 @@ nav li {
 }
 
 nav a {
-  //padding:10px;
   text-decoration: none;
   color: #000;
 }
 
-/*nav li:after {
-  display: block;
-  clear: both;
-  content: '';
-}*/
-
 .logo {
   text-transform: uppercase;
-  margin:0 20px;
+  margin: 0 20px;
   color: red;
 }
