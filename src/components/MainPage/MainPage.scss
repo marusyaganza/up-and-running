@@ -1,0 +1,38 @@
+@import "../../styles/main";
+
+@mixin list {
+  img {
+    width: 60%;
+    margin: 20px 20%;
+  }
+  a {
+    color: $deepBlue;
+    text-decoration: none;
+    margin-left: 10px;
+    &:hover {
+      color: complement($deepBlue);
+    }
+  }
+  @include clearfix;
+}
+
+#services {
+  li {
+    @include grid(3, 2%);
+  }
+  @include list;
+}
+
+section h1 {
+  margin: 40px 0;
+  text-transform: uppercase;
+  font-size: $sectionHeading;
+  color: $deepBlue;
+}
+
+#projects {
+  li {
+    @include grid(5, 2%);
+  }
+  @include list;
+}

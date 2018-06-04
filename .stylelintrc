@@ -1,13 +1,9 @@
 {
   "rules": {
-    "at-rule-empty-line-before": "always",
-    "at-rule-name-newline-after": "always",
     "at-rule-name-space-after": "always",
-    "at-rule-no-unknown": true,
     "at-rule-no-vendor-prefix": true,
     "at-rule-semicolon-newline-after": "always",
     "at-rule-semicolon-space-before": "never",
-    "at-rule-whitelist": [],
     "block-no-empty": true,
     "color-hex-case": "lower",
     "color-no-invalid-hex": true,
@@ -39,7 +35,6 @@
     "no-missing-end-of-source-newline": true,
     "property-no-unknown": true,
     "property-no-vendor-prefix": true,
-    "rule-empty-line-before": "always",
     "selector-attribute-brackets-space-inside": "always"
   }
 }

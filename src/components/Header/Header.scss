@@ -1,28 +1,38 @@
-header {
-  padding: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 40px;
-  width: 100%;
-  background: silver;
-  margin: 0 0 100px;
+@import "../../styles/main.scss";
+
+@mixin headerItem {
+  color: $offWhite;
+  padding: 16px;
+  display: block;
+  text-align: center;
 }
 
-nav li {
-  list-style: none;
-  float: right;
-  display: inline-block;
-  margin: 0 15px;
+#main-nav {
+  background: $deepBlue;
+  ul {
+    width: 100%;
+    list-style: none;
+    @include clearfix;
+  }
+  li {
+    float: right;
+    width: (70%/5);
+  }
+  a {
+    @include headerItem;
+    text-decoration: none;
+    text-transform: uppercase;
+    &:hover {
+      background: lighten($deepBlue, 3);
+    }
+  }
 }
 
-nav a {
-  text-decoration: none;
-  color: #000;
+#logo {
+  float: left;
+  width: 10%;
+  @include headerItem;
+  position: relative;
+  margin-left:10px;
 }
 
-.logo {
-  text-transform: uppercase;
-  margin: 0 20px;
-  color: red;
-}
