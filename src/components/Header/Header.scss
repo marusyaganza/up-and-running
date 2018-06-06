@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+header {
+  height:50px;
+}
+
 #main-nav {
   background: $deepBlue;
   ul {
@@ -23,7 +27,7 @@
     text-decoration: none;
     text-transform: uppercase;
     &:hover {
-      background: lighten($deepBlue, 3);
+      background: lighten($deepBlue, 4);
     }
   }
 }
@@ -34,5 +38,9 @@
   @include headerItem;
   position: relative;
   margin-left:10px;
+}
+
+.active {
+  color: red;
 }
 

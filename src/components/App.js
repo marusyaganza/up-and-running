@@ -9,9 +9,6 @@ class App extends Component {
             <div>
                 <Header />
                 <MainPage />
-                <section>
-                    <h1>Main content</h1>
-                </section>
             </div>
         );
     }

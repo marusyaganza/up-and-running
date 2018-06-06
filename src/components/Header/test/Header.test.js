@@ -7,5 +7,5 @@ configure({ adapter: new Adapter() });
 
 describe('<Header /> UI Component', () => {
     it('renders logo', () =>
-        expect(shallow(<Header />).find('div#logo').length).toBe(1));
+        expect(shallow(<Header />).find('a#logo').length).toBe(1));
 });
