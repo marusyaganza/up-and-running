@@ -8,7 +8,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[hash].js'
+        filename: '[hash].js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -24,6 +25,9 @@ module.exports = {
                 use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader',  'postcss-loader', 'sass-loader']
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new CleanWebpackPlugin('dist', {} ),

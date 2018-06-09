@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Banner from '../Banner/Banner';
+import Miniature from '../../components/Miniature/Miniature';
+import { PHOTOS_URL } from '../../constants/constants';
+import styles from './Home.scss';
 
 class Home extends Component {
+    constructor() {
+        super();
+        this.state = { projects: null };
+    }
+
+    componentDidMount() {
+        fetch(PHOTOS_URL)
+            .then(response => response.json())
+            .then(json => {
+                const projects = Array.from(json).slice(0, 30);
+                this.setState({ projects });
+            });
+    }
+
     renderImages(width, height, num, href, items, startCount = 0) {
         const src = `http://via.placeholder.com/${width}x${height}`;
         const result = Array.from({ length: num }, (v, i) => i + startCount).map(i => (<li key={ i }> <img src={ src } alt="" /> <Link to={ `/${href}/` }> { items ? items[i] : `item${i}` } </Link></li>));
@@ -10,7 +27,18 @@ class Home extends Component {
             result
         );
     }
+
     render() {
+        const projects = !this.state.projects ? <p> Loading... </p> :
+            this.state.projects.map(item => (
+                <li key={ item.id }>
+                    <Miniature
+                        id={ item.id }
+                        title={ item.title }
+                        src={ item.thumbnailUrl }
+                    />
+                </li>
+            ));
         return (
             <div>
                 <Banner
@@ -32,7 +60,7 @@ class Home extends Component {
                     <div className="wrapper">
                         <h1>Our Projects</h1>
                         <ul>
-                            { this.renderImages(150, 150, 15) }
+                            { projects }
                         </ul>
                     </div>
                 </section>
