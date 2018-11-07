@@ -7,8 +7,8 @@
 # Install dependencies
 npm install
 
-# Serve on localhost:3000
-npm start
+# Serve on localhost:8080
+npm run serv
 
 # Build for production
 npm run build
