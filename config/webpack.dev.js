@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 module.exports = {
 	entry: {
 		main: [
@@ -75,6 +76,14 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
+		new StylelintPlugin({
+			configFile: path.resolve(path.resolve(__dirname, '../stylelint.config.js')),
+			context: path.resolve(path.resolve(__dirname, '../src/sass')),
+			files: ['*.scss'],
+			quiet: false,
+			failOnError: false,
+			syntax: 'scss'
+		}),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('development')
