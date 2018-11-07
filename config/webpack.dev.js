@@ -4,9 +4,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
 	entry: {
 		main: [
-			'babel-runtime/regenerator',
-			'webpack-hot-middleware/client?reload=true',
-			'./src/main.js'
+			"react-hot-loader/patch",
+			"babel-runtime/regenerator",
+			"babel-register",
+			"webpack-hot-middleware/client?reload=true",
+			"./src/main.js"
 		]
 	},
 	mode: 'development',
@@ -82,7 +84,7 @@ module.exports = {
 		}),
 		new HTMLWebpackPlugin({
 			template: './src/index.html',
-			inject: false
+			inject: true
 		})
 	]
 }
