@@ -1,32 +1,48 @@
 import express from "express"
+const server = express()
+import path from "path"
+const expressStaticGzip = require("express-static-gzip")
+import webpack from "webpack"
 
-const server = express();
+import configDevClient from "../../config/webpack.dev-client.js"
+import configDevServer from "../../config/webpack.dev-server.js"
+import configProdClient from "../../config/webpack.prod-client.js"
+import configProdServer from "../../config/webpack.prod-server.js"
 
-const isProd = process.env.NODE_ENV === "production";
-if (!isProd) {
-	const webpack = require("webpack");
-	const config = require("../../config/webpack.dev.js");
-	const compiler = webpack(config);
+const isProd = process.env.NODE_ENV === "production"
+const isDev = !isProd
+if (isDev) {
+	const compiler = webpack([configDevClient, configDevServer])
+
+	const clientCompiler = compiler.compilers[0]
+	const serverCompiler = compiler.compilers[1]
 
 	const webpackDevMiddleware = require("webpack-dev-middleware")(
 		compiler,
-		config.devServer
-	);
+		configDevClient.devServer
+	)
 
 	const webpackHotMiddlware = require("webpack-hot-middleware")(
-		compiler,
-		config.devServer
-	);
+		clientCompiler,
+		configDevClient.devServer
+	)
 
-	server.use(webpackDevMiddleware);
-	server.use(webpackHotMiddlware);
+	server.use(webpackDevMiddleware)
+	server.use(webpackHotMiddlware)
 	console.log("Middleware enabled")
+} else {
+	const render = require("./render.js")
+	server.use(
+		expressStaticGzip("dist", {
+			enableBrotli: true
+		})
+	)
+	server.use(render())
 }
 
-const expressStaticGzip = require("express-static-gzip");
-server.use(expressStaticGzip("dist", { enableBrotlin: true }));
-
-const PORT = process.env.PORT || 8080;
+const PORT = 8080
 server.listen(PORT, () => {
-	console.log(`Server listening on http://localhost:${PORT}`)
-});
+	console.log(
+		`Server listening on http://localhost:${PORT} in ${process.env.NODE_ENV}`
+	)
+})

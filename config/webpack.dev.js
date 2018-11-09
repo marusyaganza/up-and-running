@@ -1,14 +1,16 @@
 const path = require('path')
 const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = {
 	entry: {
+		vendor: ["react"],
 		main: [
-			"react-hot-loader/patch",
-			"babel-runtime/regenerator",
-			"babel-register",
-			"webpack-hot-middleware/client?reload=true",
-			"./src/main.js"
+			'react-hot-loader/patch',
+			'babel-runtime/regenerator',
+			'babel-register',
+			'webpack-hot-middleware/client?reload=true',
+			'./src/main.js'
 		]
 	},
 	mode: 'development',
@@ -25,6 +27,19 @@ module.exports = {
 		},
 		hot: true
 	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			cacheGroups: {
+				vendor: {
+					name: 'vendor',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
+		}
+	},
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
@@ -82,9 +97,12 @@ module.exports = {
 				NODE_ENV: JSON.stringify('development')
 			}
 		}),
-		new HTMLWebpackPlugin({
-			template: './src/index.html',
-			inject: true
+		// new HTMLWebpackPlugin({
+		// 	template: './src/index.html',
+		// 	inject: true
+		// }),
+		new BundleAnalyzerPlugin({
+			// generateStatsFile: true
 		})
 	]
 }
