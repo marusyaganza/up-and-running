@@ -1,4 +1,4 @@
 module.exports = {
-	heading: "Hello, webpack",
+	heading: "Hello, webpack!!",
 	bioText: "Welcome to my first project."
 }
