@@ -3,6 +3,8 @@ const {
   scheduleFlight,
 } = require("../../models/flights/flights.model");
 
+const { validationResult } = require("express-validator");
+
 async function getAllFlights(req, res) {
   const flights = await getFlights();
   return res.json(flights);
@@ -10,8 +12,14 @@ async function getAllFlights(req, res) {
 
 async function postFlight(req, res) {
   const input = req.body;
-  const flight = await scheduleFlight(input);
-  return res.status(201).json(flight);
+  const errors = validationResult(req)
+    ?.array()
+    ?.map((error) => error?.msg);
+  if (!errors?.length) {
+    const flight = await scheduleFlight(input);
+    return res.status(201).json(flight);
+  }
+  return res.status(400).json({ errors });
 }
 
 module.exports = {
