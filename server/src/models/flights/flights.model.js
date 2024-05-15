@@ -5,9 +5,27 @@ async function getFlights() {
   return flights;
 }
 
+async function updateFlight(id, update) {
+  const flight = await Flight.findByIdAndUpdate(id, update, {
+    new: true,
+  });
+  return flight;
+}
+
 async function scheduleFlight(input) {
   const flight = await Flight.create(input);
   return flight;
 }
 
-module.exports = { getFlights, scheduleFlight };
+async function cancelFlight(id) {
+  const flight = await Flight.findByIdAndUpdate(
+    id,
+    { isCancelled: true },
+    {
+      new: true,
+    }
+  );
+  return flight;
+}
+
+module.exports = { getFlights, scheduleFlight, updateFlight, cancelFlight };

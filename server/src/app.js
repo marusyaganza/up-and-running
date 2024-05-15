@@ -5,7 +5,7 @@ const helmet = require("helmet");
 
 const app = express();
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("common"));
 app.use(helmet());
 
 const routes = Object.keys(ROUTES);
