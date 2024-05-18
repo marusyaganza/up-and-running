@@ -1,7 +1,30 @@
 const Flight = require("./flights.mongo");
 
 async function getFlights() {
-  const flights = await Flight.find();
+  const flights = await Flight.find().sort("-date").exec();
+  return flights;
+}
+
+async function getUpcomingFlights() {
+  const flights = await Flight.find({
+    $and: [{ date: { $gte: new Date() }, isCancelled: false }],
+  })
+    .sort("-date")
+    .exec();
+  return flights;
+}
+
+async function getPastFlights() {
+  const flights = await Flight.find({
+    $or: [
+      {
+        date: { $lt: new Date() },
+      },
+      { isCancelled: true },
+    ],
+  })
+    .sort("-date")
+    .exec();
   return flights;
 }
 
@@ -28,4 +51,11 @@ async function cancelFlight(id) {
   return flight;
 }
 
-module.exports = { getFlights, scheduleFlight, updateFlight, cancelFlight };
+module.exports = {
+  getFlights,
+  getUpcomingFlights,
+  getPastFlights,
+  scheduleFlight,
+  updateFlight,
+  cancelFlight,
+};

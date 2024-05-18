@@ -6,11 +6,15 @@ const {
   httpPostFlight,
   httpCancelFlight,
   httpUpdateFlight,
+  httpGetPastFlights,
+  httpGetUpcomingFlights,
 } = require("./flights.controller");
 
 const flightsFouter = express.Router();
 
 flightsFouter.get("/", httpGetAllFlights);
+flightsFouter.get("/upcoming", httpGetUpcomingFlights);
+flightsFouter.get("/history", httpGetPastFlights);
 
 flightsFouter.post(
   "/",

@@ -2,6 +2,8 @@ const {
   getFlights,
   scheduleFlight,
   cancelFlight,
+  getPastFlights,
+  getUpcomingFlights,
   updateFlight,
 } = require("../../models/flights/flights.model");
 
@@ -9,6 +11,16 @@ const { validationResult } = require("express-validator");
 
 async function httpGetAllFlights(req, res) {
   const flights = await getFlights();
+  return res.json(flights);
+}
+
+async function httpGetUpcomingFlights(req, res) {
+  const flights = await getUpcomingFlights();
+  return res.json(flights);
+}
+
+async function httpGetPastFlights(req, res) {
+  const flights = await getPastFlights();
   return res.json(flights);
 }
 
@@ -48,4 +60,6 @@ module.exports = {
   httpPostFlight,
   httpCancelFlight,
   httpUpdateFlight,
+  httpGetUpcomingFlights,
+  httpGetPastFlights,
 };
