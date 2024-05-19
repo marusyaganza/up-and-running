@@ -4,15 +4,15 @@ const flightsFouter = require("./flights/flights.router");
 
 const ROUTES = {
   planets: {
-    url: "/planets",
+    url: "/data/planets",
     router: planetsRouter,
   },
   starships: {
-    url: "/starships",
+    url: "/data/starships",
     router: starshipsRouter,
   },
   flights: {
-    url: "/flights",
+    url: "/data/flights",
     router: flightsFouter,
   },
 };
