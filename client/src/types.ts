@@ -6,3 +6,9 @@ export interface Flight {
   isCancelled: boolean;
   _id: string;
 }
+
+export interface User {
+  id: string;
+  displayName: string;
+  picture: string;
+}
