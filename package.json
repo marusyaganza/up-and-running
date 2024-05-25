@@ -11,7 +11,10 @@
     "prod": "yarn build:client && yarn start:server",
     "deploy:client": "cd ./client && yarn install && yarn build",
     "deploy:server": "cd ./server && yarn install",
-    "deploy": "yarn deploy:client && yarn deploy:server"
+    "deploy": "yarn deploy:client && yarn deploy:server",
+    "test:client": "cd ./client && yarn lint",
+    "test:server": "cd ./server && yarn test",
+    "test": "yarn test:client && yarn test:server"
   },
   "author": "",
   "license": "ISC"
