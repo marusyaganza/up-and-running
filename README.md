@@ -1,30 +1,9 @@
-# Up and running
-> This is a boilerplate for React 16 & Webpack 4. It includes webpack-dev-server and a build script
+This project uses Star Wars API [docs](https://swapi.info/)
 
-## Quick Start
+### Run DB for local development
 
-``` bash
-# Install dependencies
-npm install
+`docker run --name up-db -d -v data:/data/up-db -p 27017:27017 mongo`
 
-# Serve on localhost:3000
-npm start
+### Run test DB
 
-# Build for production
-npm run build
-```
-
-## App Info
-
-### Author
-
-Marusya Ganza
-marusyaganza@yandex.ru
-
-### Version
-
-1.0.0
-
-### License
-
-This project is licensed under the ISC License
+`docker run --name test-db --rm -d -v /data/test-db -p 27017:27017 mongo`
