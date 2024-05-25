@@ -8,7 +8,10 @@
     "start:client": "cd ./client && yarn start",
     "start": "yarn start:server & yarn start:client",
     "build:client": "cd ./client && yarn build",
-    "prod": "yarn build:client && yarn start:server"
+    "prod": "yarn build:client && yarn start:server",
+    "deploy:client": "cd ./client && yarn install && yarn build",
+    "deploy:server": "cd ./server && yarn install",
+    "deploy": "yarn deploy:client && yarn deploy:server"
   },
   "author": "",
   "license": "ISC"
