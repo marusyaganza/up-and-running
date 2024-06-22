@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../app";
-import { ROUTES } from "../../routes";
+import { ROUTES } from "..";
 import { connectToDb, dropDb, disconnectFromDb } from "../../test/dbUtils";
 import { mockData } from "../../test/mocks";
 import { Flight } from "../../models/flights/flights.mongo";
@@ -80,7 +80,7 @@ describe("DELETE /flights", () => {
   test("It should respond with 200 and send updated json data", async () => {
     const flight = await Flight.findOne({}, "id");
     const response = await request(app)
-      .delete(`${flightsUrl}/${flight.id}`)
+      .delete(`${flightsUrl}/${flight!.id}`)
       .expect(200)
       .expect("Content-type", /json/);
     expect(response.body).toMatchObject({
@@ -113,7 +113,7 @@ describe("UPDATE /flights", () => {
   test("It should respond with 200 and send updated json data", async () => {
     const flight = await Flight.findOne({}, "id");
     const response = await request(app)
-      .patch(`${flightsUrl}/${flight.id}`)
+      .patch(`${flightsUrl}/${flight!.id}`)
       .expect(200)
       .send(flightUpdate)
       .expect("Content-type", /json/);

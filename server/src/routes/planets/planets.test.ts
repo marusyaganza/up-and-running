@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../app";
-import { ROUTES } from "../../routes";
+import { ROUTES } from "..";
 import { connectToDb, dropDb, disconnectFromDb } from "../../test/dbUtils";
 
 const planetsUrl = ROUTES.planets.url;
