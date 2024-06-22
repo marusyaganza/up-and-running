@@ -1,11 +1,12 @@
-const Flight = require("./flights.mongo");
+import { Flight } from "./flights.mongo";
+import { FlightType, FlightInputType } from "./flights.types";
 
-async function getFlights() {
+export async function getFlights(): Promise<FlightType[]> {
   const flights = await Flight.find().sort("-date").exec();
   return flights;
 }
 
-async function getUpcomingFlights() {
+export async function getUpcomingFlights(): Promise<FlightType[]> {
   const flights = await Flight.find({
     $and: [{ date: { $gte: new Date() }, isCancelled: false }],
   })
@@ -14,7 +15,7 @@ async function getUpcomingFlights() {
   return flights;
 }
 
-async function getPastFlights() {
+export async function getPastFlights(): Promise<FlightType[]> {
   const flights = await Flight.find({
     $or: [
       {
@@ -28,19 +29,24 @@ async function getPastFlights() {
   return flights;
 }
 
-async function updateFlight(id, update) {
+export async function updateFlight(
+  id: string,
+  update: Partial<FlightInputType>
+): Promise<FlightType | null> {
   const flight = await Flight.findByIdAndUpdate(id, update, {
     new: true,
   });
   return flight;
 }
 
-async function scheduleFlight(input) {
+export async function scheduleFlight(
+  input: FlightInputType
+): Promise<FlightType> {
   const flight = await Flight.create(input);
   return flight;
 }
 
-async function cancelFlight(id) {
+export async function cancelFlight(id: string): Promise<FlightType | null> {
   const flight = await Flight.findByIdAndUpdate(
     id,
     { isCancelled: true },
@@ -50,12 +56,3 @@ async function cancelFlight(id) {
   );
   return flight;
 }
-
-module.exports = {
-  getFlights,
-  getUpcomingFlights,
-  getPastFlights,
-  scheduleFlight,
-  updateFlight,
-  cancelFlight,
-};

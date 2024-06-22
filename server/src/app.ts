@@ -1,9 +1,9 @@
-const express = require("express");
-const path = require("path");
-const { ROUTES } = require("./routes");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const cors = require("cors");
+import express from "express";
+import path from "path";
+import { URLS, ROUTES } from "./routes";
+import morgan from "morgan";
+import helmet from "helmet";
+import cors from "cors";
 
 const FE_URL = process.env.FE_URL;
 
@@ -16,13 +16,13 @@ app.use(helmet());
 app.use(cors({ origin: FE_URL }));
 app.use("/", express.static(staticPath));
 
-const routes = Object.keys(ROUTES);
+const routes = Object.values(URLS) as URLS[];
 routes.forEach((route) => {
   app.use(ROUTES[route].url, ROUTES[route].router);
 });
 
-app.get("/*", (req, res) => {
+app.get("/*", (_, res) => {
   res.sendFile(path.join(staticPath, "index.html"));
 });
 
-module.exports = app;
+export default app;

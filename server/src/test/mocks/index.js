@@ -1,5 +1,5 @@
-const mockFlights = require("./flights.mock");
-const mockPlanets = require("./planets.mock");
-const mockStarships = require("./starships.mock");
+import { mockFlights } from "./flights.mock";
+import { mockPlanets } from "./planets.mock";
+import { mockStarships } from "./starships.mock";
 
-module.exports = { mockFlights, mockPlanets, mockStarships };
+export const mockData = { mockFlights, mockPlanets, mockStarships };

@@ -1,7 +1,7 @@
-const request = require("supertest");
-const app = require("../../app");
-const { ROUTES } = require("../../routes");
-const { connectToDb, dropDb, disconnectFromDb } = require("../../test/dbUtils");
+import request from "supertest";
+import app from "../../app";
+import { ROUTES } from "../../routes";
+import { connectToDb, dropDb, disconnectFromDb } from "../../test/dbUtils";
 
 const planetsUrl = ROUTES.planets.url;
 

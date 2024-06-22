@@ -1,9 +1,9 @@
-const request = require("supertest");
-const app = require("../../app");
-const { ROUTES } = require("../../routes");
-const { connectToDb, dropDb, disconnectFromDb } = require("../../test/dbUtils");
-const { mockFlights } = require("../../test/mocks");
-const Flight = require("../../models/flights/flights.mongo");
+import request from "supertest";
+import app from "../../app";
+import { ROUTES } from "../../routes";
+import { connectToDb, dropDb, disconnectFromDb } from "../../test/dbUtils";
+import { mockData } from "../../test/mocks";
+import { Flight } from "../../models/flights/flights.mongo";
 
 const newFlight = {
   destination: "Destination 2",
@@ -40,7 +40,7 @@ describe("GET /flights", () => {
       .get(flightsUrl)
       .expect(200)
       .expect("Content-type", /json/);
-    expect(response.body).toMatchObject(mockFlights);
+    expect(response.body).toMatchObject(mockData.mockFlights);
   });
 });
 
@@ -84,7 +84,7 @@ describe("DELETE /flights", () => {
       .expect(200)
       .expect("Content-type", /json/);
     expect(response.body).toMatchObject({
-      ...mockFlights[0],
+      ...mockData.mockFlights[0],
       isCancelled: true,
     });
   });
@@ -118,7 +118,7 @@ describe("UPDATE /flights", () => {
       .send(flightUpdate)
       .expect("Content-type", /json/);
     expect(response.body).toMatchObject({
-      ...mockFlights[0],
+      ...mockData.mockFlights[0],
       ...flightUpdate,
     });
   });

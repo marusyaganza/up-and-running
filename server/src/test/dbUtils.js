@@ -1,17 +1,17 @@
-const { connect, connection } = require("mongoose");
-const Planet = require("../models/planets/planets.mongo");
-const Starship = require("../models/starships/starships.mongo");
-const Flight = require("../models/flights/flights.mongo");
+import { connect, connection } from "mongoose";
+import { Planet } from "../models/planets/planets.mongo";
+import { Starship } from "../models/starships/starships.mongo";
+import { Flight } from "../models/flights/flights.mongo";
 
-const { mockFlights, mockPlanets, mockStarships } = require("./mocks");
+import { mockData } from "./mocks";
 
-async function seedDb() {
-  await Planet.insertMany(mockPlanets);
-  await Starship.insertMany(mockStarships);
-  await Flight.insertMany(mockFlights);
+export async function seedDb() {
+  await Planet.insertMany(mockData.mockPlanets);
+  await Starship.insertMany(mockData.mockStarships);
+  await Flight.insertMany(mockData.mockFlights);
 }
 
-async function connectToDb() {
+export async function connectToDb() {
   try {
     await connect("mongodb://localhost:27017/test");
     await seedDb();
@@ -20,7 +20,7 @@ async function connectToDb() {
   }
 }
 
-async function disconnectFromDb() {
+export async function disconnectFromDb() {
   try {
     await connection.close();
   } catch (err) {
@@ -28,17 +28,10 @@ async function disconnectFromDb() {
   }
 }
 
-async function dropDb() {
+export async function dropDb() {
   try {
     await connection.db.dropDatabase();
   } catch (err) {
     console.error("mongoose drop db error", err);
   }
 }
-
-module.exports = {
-  connectToDb,
-  disconnectFromDb,
-  dropDb,
-  seedDb,
-};

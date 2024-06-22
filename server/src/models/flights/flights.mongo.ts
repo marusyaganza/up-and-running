@@ -1,6 +1,7 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
+import { FlightType } from "./flights.types";
 
-const flightSchema = new Schema({
+const flightSchema = new Schema<FlightType>({
   destination: { type: String, required: true },
   origin: { type: String, required: true },
   starship: { type: String, required: true },
@@ -8,6 +9,4 @@ const flightSchema = new Schema({
   isCancelled: { type: Boolean, default: false },
 });
 
-const Flight = model("flight", flightSchema);
-
-module.exports = Flight;
+export const Flight = model<FlightType>("flight", flightSchema);

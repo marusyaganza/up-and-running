@@ -1,30 +1,31 @@
-const {
+import { Request, Response } from "express";
+import {
   getFlights,
   scheduleFlight,
   cancelFlight,
   getPastFlights,
   getUpcomingFlights,
   updateFlight,
-} = require("../../models/flights/flights.model");
+} from "../../models/flights/flights.model";
 
-const { validationResult } = require("express-validator");
+import { validationResult } from "express-validator";
 
-async function httpGetAllFlights(req, res) {
+export async function httpGetAllFlights(_: Request, res: Response) {
   const flights = await getFlights();
   return res.json(flights);
 }
 
-async function httpGetUpcomingFlights(req, res) {
+export async function httpGetUpcomingFlights(_: Request, res: Response) {
   const flights = await getUpcomingFlights();
   return res.json(flights);
 }
 
-async function httpGetPastFlights(req, res) {
+export async function httpGetPastFlights(_: Request, res: Response) {
   const flights = await getPastFlights();
   return res.json(flights);
 }
 
-async function httpPostFlight(req, res) {
+export async function httpPostFlight(req: Request, res: Response) {
   const input = req.body;
   const errors = validationResult(req)
     ?.array()
@@ -36,7 +37,7 @@ async function httpPostFlight(req, res) {
   return res.status(400).json({ errors });
 }
 
-async function httpCancelFlight(req, res) {
+export async function httpCancelFlight(req: Request, res: Response) {
   const id = req?.params?.id;
   const cancelledFlight = await cancelFlight(id);
   if (!cancelledFlight) {
@@ -45,7 +46,7 @@ async function httpCancelFlight(req, res) {
   return res.status(200).json(cancelledFlight);
 }
 
-async function httpUpdateFlight(req, res) {
+export async function httpUpdateFlight(req: Request, res: Response) {
   const id = req?.params?.id;
   const update = req.body;
   const updatedFlight = await updateFlight(id, update);
@@ -54,12 +55,3 @@ async function httpUpdateFlight(req, res) {
   }
   return res.status(200).json(updatedFlight);
 }
-
-module.exports = {
-  httpGetAllFlights,
-  httpPostFlight,
-  httpCancelFlight,
-  httpUpdateFlight,
-  httpGetUpcomingFlights,
-  httpGetPastFlights,
-};

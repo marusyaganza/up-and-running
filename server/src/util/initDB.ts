@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
-const Planet = require("../models/planets/planets.mongo");
-const Starship = require("../models/starships/starships.mongo");
+import { connect } from "mongoose";
+import { Planet } from "../models/planets/planets.mongo";
+import { Starship } from "../models/starships/starships.mongo";
 
-const { fetchStarships, fetchPlanets } = require("./fetchData");
+import { fetchStarships, fetchPlanets } from "./fetchData";
 
 const DB_URL = process.env.DB_URL || "mongodb://localhost:27017";
 
@@ -19,14 +19,12 @@ async function seedDB() {
   }
 }
 
-async function initDB(callback) {
+export async function initDB(callback: () => void) {
   try {
-    await mongoose.connect(DB_URL);
+    await connect(DB_URL);
     await seedDB();
     callback();
   } catch (err) {
     console.error("mongoose error", err);
   }
 }
-
-module.exports = { initDB };

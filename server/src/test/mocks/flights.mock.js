@@ -1,4 +1,4 @@
-const mockFlights = [
+export const mockFlights = [
   {
     destination: "Destination",
     origin: "Origin",
@@ -7,5 +7,3 @@ const mockFlights = [
     isCancelled: false,
   },
 ];
-
-module.exports = mockFlights;

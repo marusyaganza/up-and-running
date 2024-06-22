@@ -1,8 +1,8 @@
 require("dotenv").config();
-const { initDB } = require("./src/util/initDB");
+import { initDB } from "./util/initDB";
 
-const { createServer } = require("http");
-const app = require("./src/app");
+import { createServer } from "http";
+import app from "./app";
 
 const PORT = process.env.PORT || 4000;
 
@@ -12,4 +12,4 @@ initDB(() => {
   server.listen(PORT, () => {
     console.log(`server is ready on port ${PORT}🚀`);
   });
-}).catch((err) => console.error(err));
+}).catch((err: string) => console.error(err));

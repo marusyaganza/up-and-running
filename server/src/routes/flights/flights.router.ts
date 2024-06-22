@@ -1,14 +1,14 @@
-const express = require("express");
-const { body } = require("express-validator");
+import express from "express";
+import { body } from "express-validator";
 
-const {
+import {
   httpGetAllFlights,
   httpPostFlight,
   httpCancelFlight,
   httpUpdateFlight,
   httpGetPastFlights,
   httpGetUpcomingFlights,
-} = require("./flights.controller");
+} from "./flights.controller";
 
 const flightsFouter = express.Router();
 
@@ -29,4 +29,4 @@ flightsFouter.patch("/:id", httpUpdateFlight);
 
 flightsFouter.delete("/:id", httpCancelFlight);
 
-module.exports = flightsFouter;
+export default flightsFouter;
