@@ -4,7 +4,7 @@
   "execMap": {
     "js": "node"
   },
-  "watch": ["dist", "src"],
+  "watch": ["dist"],
   "ext": "ts,js,json,html",
   "env": {
     "DB_URL": "mongodb://localhost:27017"

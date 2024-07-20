@@ -5,16 +5,16 @@ import { PageLayout } from "../components/PageLayout/PageLayout";
 import { Spinner } from "../components/Spinner";
 import { useFetch } from "../hooks/useFetch";
 import { NotificationContext } from "../context/NotificationContext";
-import { Flight } from "../types";
+import { IFlight } from "../types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const UpcomingPage = () => {
-  const [fetchFlights, flightsResult] = useFetch<Flight[]>(
+  const [fetchFlights, flightsResult] = useFetch<IFlight[]>(
     `${API_URL}/flights/upcoming`
   );
-  const [flights, setFlights] = useState<Flight[]>([]);
-  const [cancelFlight, cancelFlightResult] = useFetch<Flight>();
+  const [flights, setFlights] = useState<IFlight[]>([]);
+  const [cancelFlight, cancelFlightResult] = useFetch<IFlight>();
   const { setNotification } = useContext(NotificationContext);
 
   useEffect(() => {

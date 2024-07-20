@@ -4,7 +4,7 @@ import { PageLayout } from "../components/PageLayout/PageLayout";
 import { FlightForm } from "../components/FlightForm";
 import { Spinner } from "../components/Spinner";
 import { useFetch } from "../hooks/useFetch";
-import { Flight } from "../types";
+import { IFlight } from "../types";
 import { ROUTES } from "../router/routes";
 import { NotificationContext } from "../context/NotificationContext";
 
@@ -21,7 +21,7 @@ const FlightsPage = () => {
     `${API_URL}/starships`
   );
 
-  const [scheduleFlight, flightResult] = useFetch<Flight>();
+  const [scheduleFlight, flightResult] = useFetch<IFlight>();
 
   useEffect(() => {
     fetchPlanets();

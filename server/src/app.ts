@@ -1,9 +1,9 @@
-import express from "express";
-import path from "path";
-import { URLS, ROUTES } from "./routes";
-import morgan from "morgan";
+import * as express from "express";
+import * as path from "path";
+import * as morgan from "morgan";
+import * as cors from "cors";
 import helmet from "helmet";
-import cors from "cors";
+import { URLS, ROUTES } from "./routes";
 
 const FE_URL = process.env.FE_URL;
 

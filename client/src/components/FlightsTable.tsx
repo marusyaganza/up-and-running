@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Flight } from "../types";
+import { IFlight } from "../types";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,7 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-interface FlightType extends Flight {
+interface FlightType extends IFlight {
   action?: () => void;
 }
 

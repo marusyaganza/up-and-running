@@ -1,7 +1,7 @@
-import express from "express";
+import { Router } from "express";
 import starshipsController from "./starships.controller";
 
-const starshipsRouter = express.Router();
+const starshipsRouter = Router();
 
 starshipsRouter.get("/", starshipsController);
 

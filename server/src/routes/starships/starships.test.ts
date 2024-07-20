@@ -1,4 +1,4 @@
-import request from "supertest";
+import * as request from "supertest";
 import app from "../../app";
 import { ROUTES } from "..";
 import { connectToDb, dropDb, disconnectFromDb } from "../../test/dbUtils";

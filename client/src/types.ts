@@ -1,4 +1,4 @@
-export interface Flight {
+export interface IFlight {
   destination: string;
   origin: string;
   starship: string;

@@ -1,7 +1,7 @@
-import express from "express";
+import { Router } from "express";
 import { getAllPalnets } from "./planets.controller";
 
-const planetsRouter = express.Router();
+const planetsRouter = Router();
 
 planetsRouter.get("/", getAllPalnets);
 

@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import { body } from "express-validator";
 
 import {
@@ -10,7 +10,7 @@ import {
   httpGetUpcomingFlights,
 } from "./flights.controller";
 
-const flightsFouter = express.Router();
+const flightsFouter = Router();
 
 flightsFouter.get("/", httpGetAllFlights);
 flightsFouter.get("/upcoming", httpGetUpcomingFlights);
