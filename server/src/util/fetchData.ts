@@ -1,36 +1,34 @@
+import { IPlanetData, IStarshipData } from "../types/types";
+import {
+  assertIsTypedArray,
+  isStarshipData,
+  isPlanetData,
+} from "../types/type-guards";
 const PLANETS_API = process.env.PLANETS_API || "";
 const STARSHIP_API = process.env.STARSHIP_API || "";
 
-interface PlanetData {
-  name: string;
-}
-
-interface StarshipData {
-  model: string;
-  name: string;
-  passengers: number;
-}
-
-export async function fetchPlanets(): Promise<string[]> {
-  let planets: string[] = [];
+export async function fetchPlanets(): Promise<IPlanetData[]> {
+  let planets: IPlanetData[] = [];
 
   await fetch(PLANETS_API)
     .then((res) => res.json())
-    .then((json) => {
-      planets = json.map((planet: PlanetData) => ({ name: planet.name }));
+    .then((json: unknown) => {
+      assertIsTypedArray(json, isPlanetData);
+      planets = json.map((planet: IPlanetData) => ({ name: planet.name }));
     })
     .catch((error) => console.error(error));
 
   return planets;
 }
 
-export async function fetchStarships(): Promise<StarshipData[]> {
-  let starships: StarshipData[] = [];
+export async function fetchStarships(): Promise<IStarshipData[]> {
+  let starships: IStarshipData[] = [];
 
   await fetch(STARSHIP_API)
     .then((res) => res.json())
-    .then((json) => {
-      starships = json.map((starship: StarshipData) => ({
+    .then((json: unknown) => {
+      assertIsTypedArray(json, isStarshipData);
+      starships = json.map((starship: IStarshipData) => ({
         model: starship.model,
         name: starship.name,
         passengers: starship.passengers,
