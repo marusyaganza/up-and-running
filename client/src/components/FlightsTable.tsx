@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IFlight } from "../types";
+import { Flight } from "../generated/graphql";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,7 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-interface FlightType extends IFlight {
+interface FlightType extends Flight {
   action?: () => void;
 }
 
@@ -64,7 +64,7 @@ export const FlightsTable = ({ flights, withAction }: FlightsTableProps) => {
             const date = new Date(flight.date).toLocaleDateString("en-US");
             return (
               <StyledTableRow
-                key={flight._id}
+                key={flight.id}
                 className={flight?.isCancelled ? "cancelled" : ""}
               >
                 <StyledTableCell component="th" scope="row">

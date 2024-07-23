@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
-import { PlanetType } from "./planets.types";
+import { IPlanet } from "../../types/types";
 
-const planetSchema = new Schema<PlanetType>({
+const planetSchema = new Schema<IPlanet>({
   name: { type: String, required: true, unique: true },
 });
 
-export const Planet = model<PlanetType>("planet", planetSchema);
+export const Planet = model<IPlanet>("planet", planetSchema);

@@ -1,30 +1,37 @@
 import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { FlightsTable } from "../components/FlightsTable";
+import { FlightsTable, FlightsTableProps } from "../components/FlightsTable";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { Spinner } from "../components/Spinner";
-import { useFetch } from "../hooks/useFetch";
 import { NotificationContext } from "../context/NotificationContext";
-import { IFlight } from "../types";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { useMutation, useQuery } from "@apollo/client";
+import { CancelFlightMutation, FlightQuery } from "../generated/graphql";
+import { FLIGTHS_QUERY } from "../gql/queries";
+import { CANCEL_FLIGHT_MUTATION } from "../gql/mutations";
 
 const UpcomingPage = () => {
-  const [fetchFlights, flightsResult] = useFetch<IFlight[]>(
-    `${API_URL}/flights/upcoming`
-  );
-  const [flights, setFlights] = useState<IFlight[]>([]);
-  const [cancelFlight, cancelFlightResult] = useFetch<IFlight>();
+  const [flights, setFlights] = useState<FlightsTableProps["flights"]>([]);
+  const { loading, data, error } = useQuery<FlightQuery>(FLIGTHS_QUERY, {
+    variables: { filter: { upcoming: true } },
+  });
   const { setNotification } = useContext(NotificationContext);
 
   useEffect(() => {
-    fetchFlights();
-  }, []);
+    if (error) {
+      setNotification({
+        text: error?.message || "Error. Please try again later",
+        variant: "error",
+      });
+    }
+  }, [error]);
+
+  const [cancelFlight, cancelFlightResult] = useMutation<CancelFlightMutation>(
+    CANCEL_FLIGHT_MUTATION
+  );
 
   useEffect(() => {
     if (cancelFlightResult?.data) {
-      const { origin, destination } = cancelFlightResult.data;
-      fetchFlights();
+      const { origin, destination } = cancelFlightResult.data.cancelFlight;
       setNotification({
         text: `flight ${origin}-${destination} was cancelled`,
         variant: "success",
@@ -33,41 +40,51 @@ const UpcomingPage = () => {
   }, [cancelFlightResult?.data]);
 
   useEffect(() => {
-    if (!flightsResult?.data?.length) {
+    const newFlights = data?.flights;
+    if (!newFlights) {
       return;
     }
-    const flightsData = flightsResult.data.map((flight) => {
-      const action: () => void = function () {
-        cancelFlight(`${API_URL}/flights/${flight._id}`, { method: "delete" });
-      };
-      return {
-        ...flight,
-        date: dayjs(flight.date).format("MM/DD/YYYY"),
-        action,
-      };
-    });
+    const flightsData: FlightsTableProps["flights"] = newFlights.map(
+      (flight) => {
+        const action: () => void = function () {
+          cancelFlight({
+            variables: { cancelFlightId: flight.id },
+            refetchQueries: [
+              {
+                query: FLIGTHS_QUERY,
+                variables: { filter: { upcoming: true } },
+              },
+            ],
+          });
+        };
+        return {
+          ...flight,
+          date: dayjs(flight.date).format("MM/DD/YYYY"),
+          action,
+        };
+      }
+    );
     setFlights(flightsData);
-  }, [flightsResult?.data]);
-
-  const notifyError = (errors?: string[]) => {
-    if (!errors?.length) {
-      return;
-    }
-    setNotification({
-      text: errors.join(" "),
-      variant: "error",
-    });
-  };
+  }, [data?.flights]);
 
   useEffect(() => {
-    notifyError(cancelFlightResult?.errors);
-  }, [cancelFlightResult?.errors]);
+    const error = cancelFlightResult?.error;
+    if (error)
+      setNotification({
+        text: error?.message || "Something went wrong",
+        variant: "error",
+      });
+  }, [cancelFlightResult?.error]);
 
   useEffect(() => {
-    notifyError(flightsResult?.errors);
-  }, [flightsResult?.errors]);
+    if (error)
+      setNotification({
+        text: error?.message || "Something went wrong",
+        variant: "error",
+      });
+  }, [error]);
 
-  const isLoading = flightsResult?.isLoading || cancelFlightResult?.isLoading;
+  const isLoading = loading || cancelFlightResult?.loading;
 
   return (
     <PageLayout>

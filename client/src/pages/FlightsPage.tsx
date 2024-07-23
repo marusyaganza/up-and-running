@@ -3,87 +3,68 @@ import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { FlightForm } from "../components/FlightForm";
 import { Spinner } from "../components/Spinner";
-import { useFetch } from "../hooks/useFetch";
-import { IFlight } from "../types";
 import { ROUTES } from "../router/routes";
 import { NotificationContext } from "../context/NotificationContext";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { useQuery, useMutation } from "@apollo/client";
+import { PLATETS_STARSHIPS_QUERY, FLIGTHS_QUERY } from "../gql/queries";
+import { NEW_FLIGHT_MUTATION } from "../gql/mutations";
+import {
+  PlanetsStarshipsQuery,
+  NewFlightMutation,
+  FlightInput,
+} from "../generated/graphql";
 
 const FlightsPage = () => {
-  const { setNotification } = useContext(NotificationContext);
   const navigate = useNavigate();
-
-  const [fetchPlanets, planetsResult] = useFetch<string[]>(
-    `${API_URL}/planets`
+  const { setNotification } = useContext(NotificationContext);
+  const { loading, data, error } = useQuery<PlanetsStarshipsQuery>(
+    PLATETS_STARSHIPS_QUERY
   );
-  const [fetchStarships, starshipsResult] = useFetch<string[]>(
-    `${API_URL}/starships`
-  );
-
-  const [scheduleFlight, flightResult] = useFetch<IFlight>();
+  const [scheduleFlight, flightResult] =
+    useMutation<NewFlightMutation>(NEW_FLIGHT_MUTATION);
 
   useEffect(() => {
-    fetchPlanets();
-    fetchStarships();
-  }, []);
-
-  useEffect(() => {
-    if (flightResult?.data?.destination) {
+    const flightDestination = flightResult?.data?.addNewFlight?.destination;
+    if (flightDestination) {
       setNotification({
-        text: `flight to ${flightResult.data.destination} was created successfully`,
+        text: `flight to ${flightDestination} was created successfully`,
         variant: "success",
       });
       navigate(`/${ROUTES.upcoming}`);
     }
   }, [flightResult?.data]);
 
-  const notifyError = (errors?: string[]) => {
-    if (!errors?.length) {
-      return;
+  useEffect(() => {
+    if (error) {
+      setNotification({
+        text: error?.message || "Error. Please try again later",
+        variant: "error",
+      });
     }
-    setNotification({
-      text: errors.join(" "),
-      variant: "error",
-    });
+  }, [error]);
+
+  useEffect(() => {
+    if (flightResult.error) {
+      setNotification({
+        text: flightResult.error?.message || "Error. Please try again later",
+        variant: "error",
+      });
+    }
+  }, [flightResult.error]);
+
+  const handleFormSubmit = (input: FlightInput) => {
+    scheduleFlight({ variables: { input }, refetchQueries: [FLIGTHS_QUERY] });
   };
-
-  useEffect(() => {
-    notifyError(flightResult?.errors);
-  }, [flightResult?.errors]);
-
-  useEffect(() => {
-    notifyError(planetsResult?.errors);
-  }, [planetsResult?.errors]);
-
-  useEffect(() => {
-    notifyError(starshipsResult?.errors);
-  }, [starshipsResult?.errors]);
-
-  const handleFormSubmit = (values: Record<string, string>) => {
-    scheduleFlight(`${API_URL}/flights`, {
-      method: "post",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
-
-  const isLoading =
-    planetsResult?.isLoading ||
-    starshipsResult?.isLoading ||
-    flightResult?.isLoading;
 
   return (
     <PageLayout>
       <h1>Flights page</h1>
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <FlightForm
-          planets={planetsResult?.data || []}
-          starships={starshipsResult?.data || []}
+          planets={data?.planets ?? []}
+          starships={data?.starships ?? []}
           onSubmit={handleFormSubmit}
         />
       )}

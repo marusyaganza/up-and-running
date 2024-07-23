@@ -1,7 +1,11 @@
 import { Starship } from "./starships.mongo";
-import { StarshipType } from "./starships.types";
+import { IStarshipType } from "../../types/types";
 
-export async function getStarships(): Promise<StarshipType[]> {
+export async function getStarships(): Promise<IStarshipType[]> {
   const starships = await Starship.find();
   return starships || [];
 }
+
+export const Starships = {
+  getStarships,
+};

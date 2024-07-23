@@ -1,0 +1,37 @@
+type Flight {
+  id: ID!
+  destination: String!
+  origin: String!
+  starship: String!
+  date: String!
+  isCancelled: Boolean
+}
+
+input FlightInput {
+  destination: String!
+  origin: String!
+  starship: String!
+  date: String!
+}
+
+input UpdateFlightInput {
+  destination: String
+  origin: String
+  starship: String
+  date: String
+}
+
+input FlightsFilter {
+  upcoming: Boolean
+  past: Boolean
+}
+
+type Query {
+  flights(filter: FlightsFilter): [Flight!]!
+}
+
+type Mutation {
+  addNewFlight(input: FlightInput!): Flight!
+  cancelFlight(id: ID!): Flight!
+  updateFlight(id: ID!, input: UpdateFlightInput!): Flight!
+}

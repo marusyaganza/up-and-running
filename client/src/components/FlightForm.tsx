@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import { Button, Card, CardContent } from "@mui/material";
 import { DateSelector } from "./DateSelector";
 import { Select } from "./Select";
+import { FlightInput } from "../generated/graphql";
+import { isFlightInput } from "../types/type-guards";
 
 const StyledCardContent = styled(CardContent)(() => ({
   display: "flex",
@@ -15,7 +17,7 @@ const StyledButton = styled(Button)(() => ({
 }));
 
 export interface FlightFormProps {
-  onSubmit: (values: Record<string, string>) => void;
+  onSubmit: (values: FlightInput) => void;
   planets: string[];
   starships: string[];
   isLoading?: boolean;
@@ -50,7 +52,10 @@ export const FlightForm = ({
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     validate(values);
-    if (!Object.values(errors).filter(Boolean).length) {
+    if (
+      !Object.values(errors).filter(Boolean).length &&
+      isFlightInput(values)
+    ) {
       onSubmit(values);
     }
   };
