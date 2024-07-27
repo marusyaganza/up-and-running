@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 100",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config codegen.ts",
-    "clean": "rimraf node_modules dist"
+    "clean": "rimraf node_modules dist generated"
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
@@ -38,5 +38,9 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "volta": {
+    "node": "20.15.1",
+    "yarn": "1.22.19"
   }
 }
