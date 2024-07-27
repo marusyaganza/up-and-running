@@ -15,9 +15,14 @@ export default [
     },
   },
   {
-    ignores: ["**/generated/*", ".storybook"],
+    ignores: ["**/generated/*", ".storybook", "dist"],
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    rules: {
+      "react/react-in-jsx-scope": "off",
+    },
+  },
 ];

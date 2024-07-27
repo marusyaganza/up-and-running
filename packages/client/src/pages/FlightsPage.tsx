@@ -1,8 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/PageLayout/PageLayout";
-import { FlightForm } from "../components/FlightForm";
-import { Spinner } from "../components/Spinner";
+import { FlightForm, Spinner } from "@up/design-system";
 import { ROUTES } from "../router/routes";
 import { NotificationContext } from "../context/NotificationContext";
 import { useQuery, useMutation } from "@apollo/client";

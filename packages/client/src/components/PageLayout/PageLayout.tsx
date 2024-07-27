@@ -1,9 +1,14 @@
 import { PropsWithChildren, useContext, useEffect, useState } from "react";
-import { Header } from "../Header";
-import { Snackbar } from "../Snackbar";
+import { Header, Snackbar } from "@up/design-system";
 import { NotificationContext } from "../../context/NotificationContext";
 import styles from "./PageLayout.module.css";
+import { ROUTES } from "../../router/routes";
 
+const pages = [
+  { text: "Flights", url: ROUTES.flights },
+  { text: "Upcoming", url: ROUTES.upcoming },
+  { text: "History", url: ROUTES.history },
+];
 export interface PageLayoutProps {}
 
 export const PageLayout = ({
@@ -26,7 +31,7 @@ export const PageLayout = ({
   return (
     <>
       <div>
-        <Header />
+        <Header routes={pages} />
         <main className={styles.page}>{children}</main>
         <Snackbar
           onClose={handleClose}

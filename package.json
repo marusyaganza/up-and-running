@@ -9,13 +9,22 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "codegen": "lerna run codegen",
+    "build": "yarn codegen && lerna run build",
+    "start": "yarn codegen && lerna run dev",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint --stream"
+  },
   "dependencies": {
     "@eslint/js": "^9.7.0",
     "eslint": "9.x",
     "globals": "^15.8.0",
     "rimraf": "^6.0.1",
-    "typescript": "^5.5.4",
     "typescript-eslint": "^7.16.1"
+  },
+  "devDependencies": {
+    "lerna": "^8.1.7"
   },
   "volta": {
     "node": "20.15.1",

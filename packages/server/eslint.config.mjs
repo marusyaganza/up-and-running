@@ -7,7 +7,7 @@ export default [
     files: ["**/*.{js,mjs,cjs,ts}"],
   },
   {
-    ignores: ["**/generated/*"],
+    ignores: ["**/generated/*", "**/dist/"],
   },
   { files: ["**/*.js"], languageOptions: { sourceType: "script" } },
   { languageOptions: { globals: globals.browser } },

@@ -1,4 +1,3 @@
-import React from "react";
 import { Snackbar as UISnackbar, Alert } from "@mui/material";
 
 interface SnackbarProps {

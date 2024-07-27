@@ -1,6 +1,5 @@
 {
   "name": "@up/client",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,7 +8,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 100",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config codegen.ts",
-    "clean": "rimraf node_modules dist generated"
+    "clean": "rimraf node_modules dist generated tsconfig.tsbuildinfo"
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
@@ -21,6 +20,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@mui/x-date-pickers": "^7.4.0",
+    "@up/design-system": "0.0.0",
     "dayjs": "^1.11.11",
     "eslint": "^8.57.0",
     "graphql": "^16.9.0",

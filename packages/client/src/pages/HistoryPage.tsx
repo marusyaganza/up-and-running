@@ -1,11 +1,11 @@
-import { FlightsTable } from "../components/FlightsTable";
-import { PageLayout } from "../components/PageLayout/PageLayout";
-import { Spinner } from "../components/Spinner";
-import { useQuery } from "@apollo/client";
-import { FlightQuery } from "../generated/graphql";
-import { FLIGTHS_QUERY } from "../gql/queries";
 import { useContext, useEffect } from "react";
+import { FlightsTable, Spinner } from "@up/design-system";
+import { useQuery } from "@apollo/client";
+import { PageLayout } from "../components/PageLayout/PageLayout";
 import { NotificationContext } from "../context/NotificationContext";
+
+import { FLIGTHS_QUERY } from "../gql/queries";
+import { FlightQuery } from "../generated/graphql";
 
 const HistoryPage = () => {
   const { loading, data, error } = useQuery<FlightQuery>(FLIGTHS_QUERY, {

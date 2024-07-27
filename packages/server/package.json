@@ -5,11 +5,11 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "dev": "yarn build --watch --preserveWatchOutput & nodemon dist/server.js",
+    "dev": "yarn build && nodemon dist/server.js & yarn build --watch --preserveWatchOutput",
     "lint": "eslint src",
     "test": "jest --detectOpenHandles",
     "codegen": "graphql-codegen --config codegen.ts generated",
-    "clean": "rimraf node_modules dist"
+    "clean": "rimraf node_modules dist generated tsconfig.tsbuildinfo"
   },
   "author": "",
   "license": "ISC",

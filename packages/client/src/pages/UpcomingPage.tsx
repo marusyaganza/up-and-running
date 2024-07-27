@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { FlightsTable, FlightsTableProps } from "../components/FlightsTable";
-import { PageLayout } from "../components/PageLayout/PageLayout";
-import { Spinner } from "../components/Spinner";
-import { NotificationContext } from "../context/NotificationContext";
 import { useMutation, useQuery } from "@apollo/client";
-import { CancelFlightMutation, FlightQuery } from "../generated/graphql";
+import dayjs from "dayjs";
+import { FlightsTable, FlightsTableProps, Spinner } from "@up/design-system";
+import { PageLayout } from "../components/PageLayout/PageLayout";
+import { NotificationContext } from "../context/NotificationContext";
 import { FLIGTHS_QUERY } from "../gql/queries";
 import { CANCEL_FLIGHT_MUTATION } from "../gql/mutations";
+import { CancelFlightMutation, FlightQuery } from "../generated/graphql";
 
 const UpcomingPage = () => {
   const [flights, setFlights] = useState<FlightsTableProps["flights"]>([]);

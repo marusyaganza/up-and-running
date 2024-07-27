@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Box,
   FormHelperText,
@@ -17,7 +17,7 @@ export interface SelectProps {
 }
 
 export const Select = ({ onChange, options, label, error }: SelectProps) => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     const val = event.target.value;

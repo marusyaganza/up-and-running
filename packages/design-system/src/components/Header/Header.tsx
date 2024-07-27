@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,13 +13,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
-// import { ROUTES } from "../router/routes";
-
-// const pages = [
-//   { text: "Flights", url: ROUTES.flights },
-//   { text: "Upcoming", url: ROUTES.upcoming },
-//   { text: "History", url: ROUTES.history },
-// ];
 
 export interface IRoute {
   text: string;
