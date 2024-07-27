@@ -14,7 +14,8 @@
     "build": "yarn codegen && lerna run build",
     "start": "yarn codegen && lerna run dev",
     "clean": "lerna run clean",
-    "lint": "lerna run lint --stream"
+    "lint": "lerna run lint --stream",
+    "release": "lerna version --conventional-commits"
   },
   "dependencies": {
     "@eslint/js": "^9.7.0",
