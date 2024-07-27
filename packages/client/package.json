@@ -1,6 +1,6 @@
 {
   "name": "@up/client",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,7 +20,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@mui/x-date-pickers": "^7.4.0",
-    "@up/design-system": "0.0.0",
+    "@up/design-system": "^0.1.0",
     "dayjs": "^1.11.11",
     "eslint": "^8.57.0",
     "graphql": "^16.9.0",
