@@ -7,10 +7,18 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "./packages/*"
+    "packages/*"
   ],
   "volta": {
     "node": "20.15.1",
-    "yarn": "4.3.1"
+    "yarn": "1.22.19"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.7.0",
+    "eslint": "9.x",
+    "globals": "^15.8.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.16.1"
   }
 }
