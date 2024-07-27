@@ -1,11 +1,12 @@
 {
   "extends": "../tsconfig.settings.json",
-  "lib": ["ES2020", "DOM", "DOM.Iterable"],
   "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "rootDir": "src",
     "outDir": "dist",
     "jsx": "react-jsx",
-    "composite": true
+    "composite": true,
+    "module": "Preserve"
   },
   "include": ["src/"],
   "exclude": ["node_modules", "**/test", "**/*.test.ts", "**/*.stories.tsx"]

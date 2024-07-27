@@ -20,7 +20,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@mui/x-date-pickers": "^7.4.0",
-    "@up/design-system": "^0.1.0",
+    "@up/design-system": "*",
     "dayjs": "^1.11.11",
     "eslint": "^8.57.0",
     "graphql": "^16.9.0",
