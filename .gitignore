@@ -132,3 +132,8 @@ dist
 *storybook.log
 generated
 storybook-static
+
+
+
+.nx/cache
+.nx/workspace-data

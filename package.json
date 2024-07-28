@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "codegen": "lerna run codegen",
-    "build": "yarn codegen && lerna run build",
-    "start": "yarn codegen && lerna run dev",
+    "build": "lerna run build",
+    "start": "lerna run dev",
     "clean": "lerna run clean",
     "lint": "lerna run lint --stream",
     "release": "lerna version --conventional-commits"
@@ -30,10 +30,11 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/config-lerna-scopes": "^19.0.0",
     "husky": "^8.0.0",
-    "lerna": "^8.1.7"
+    "lerna": "^8.1.7",
+    "nx": "19.5.3"
   },
   "volta": {
     "node": "20.15.1",
-    "yarn": "1.22.19"
+    "yarn": "1.22.22"
   }
 }
