@@ -15,7 +15,7 @@ export default [
     },
   },
   {
-    ignores: ["**/generated/*", ".storybook", "dist"],
+    ignores: ["**/generated/*", ".storybook", "dist", "storybook-static"],
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
