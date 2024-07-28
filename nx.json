@@ -3,6 +3,8 @@
   "defaultBase": "develop",
   "targetDefaults": {
     "build": { "dependsOn": ["codegen"] },
-    "start": { "dependsOn": ["codegen"] }
+    "start": { "dependsOn": ["codegen"] },
+    "extract-docs": { "dependsOn": ["build"] },
+    "docs": { "dependsOn": ["extract-docs"] }
   }
 }

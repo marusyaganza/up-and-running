@@ -11,7 +11,9 @@
     "lint": "eslint src",
     "test": "jest --detectOpenHandles",
     "codegen": "graphql-codegen --config codegen.ts generated",
-    "clean": "rimraf node_modules dist generated tsconfig.tsbuildinfo"
+    "clean": "rimraf node_modules dist generated tsconfig.tsbuildinfo",
+    "extract-docs": "api-extractor run --local",
+    "docs": "api-documenter markdown -i temp -o docs"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
@@ -29,7 +31,7 @@
     "graphql": "^16.9.0",
     "mongoose": "^8.3.3",
     "morgan": "^1.10.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

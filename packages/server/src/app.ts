@@ -4,6 +4,7 @@ import cors from "cors";
 
 const FE_URL = process.env.FE_URL;
 
+/**Configure express app */
 const app = express();
 app.use(express.json());
 app.use(morgan("common"));

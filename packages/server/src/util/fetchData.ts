@@ -7,6 +7,7 @@ import {
 const PLANETS_API = process.env.PLANETS_API || "";
 const STARSHIP_API = process.env.STARSHIP_API || "";
 
+/**Fetch planets from API */
 export async function fetchPlanets(): Promise<IPlanetData[]> {
   let planets: IPlanetData[] = [];
 
@@ -21,6 +22,7 @@ export async function fetchPlanets(): Promise<IPlanetData[]> {
   return planets;
 }
 
+/**Fetch starships from API */
 export async function fetchStarships(): Promise<IStarshipData[]> {
   let starships: IStarshipData[] = [];
 

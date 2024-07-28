@@ -6,6 +6,7 @@ import { fetchStarships, fetchPlanets } from "./fetchData";
 
 const DB_URL = process.env.DB_URL || "mongodb://localhost:27017";
 
+/**Fetch starships and planets from API if they don't exist in DB */
 async function seedDB() {
   const starshipsNum = await Starship.countDocuments();
   if (!starshipsNum) {
@@ -19,6 +20,7 @@ async function seedDB() {
   }
 }
 
+/**Initialize mongo DB */
 export async function initDB(callback: () => void) {
   try {
     await connect(DB_URL);

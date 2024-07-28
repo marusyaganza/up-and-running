@@ -16,7 +16,9 @@
     "start": "lerna run dev",
     "clean": "lerna run clean",
     "lint": "lerna run lint --stream",
-    "release": "lerna version --conventional-commits"
+    "release": "lerna version --conventional-commits",
+    "extract-docs": "lerna run extract-docs",
+    "docs": "lerna run docs"
   },
   "dependencies": {
     "@eslint/js": "^9.7.0",
@@ -29,6 +31,8 @@
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/config-lerna-scopes": "^19.0.0",
+    "@microsoft/api-documenter": "^7.25.9",
+    "@microsoft/api-extractor": "^7.47.4",
     "husky": "^8.0.0",
     "lerna": "^8.1.7",
     "nx": "19.5.3"
