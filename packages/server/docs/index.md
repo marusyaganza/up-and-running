@@ -24,13 +24,13 @@ Description
 
 </td><td>
 
-<img src="https://placecorgi.herokuapp.com/300/250" align="right" />
+<img src="https://picsum.photos/id/20/200/300" align="right" />
 
 <h3>Why does this project exist?</h3>
 
 `@up/server` is a an example of apollo graphql server It uses Star wars API to fetch planets and starships <b>SWAPI.INFO</b> which you can learn more about by visiting <a href="https://swapi.info/" target="_blank"> the official docs </a>
 
-The API that is provided by the `@up/server` is used in \`<!-- -->@<!-- -->up/client' - sample React App, powered by on <a href="https://vitejs.dev/" target="_blank">Vite</a>
+The API that is provided by the `@up/server` is used in `@up/client` package - a sample React App, powered by <a href="https://vitejs.dev/" target="_blank">Vite</a>
 
 
 </td></tr>

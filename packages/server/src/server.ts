@@ -1,7 +1,7 @@
 /**
  * @packageDocumentation
  *
- * <img src="https://placecorgi.herokuapp.com/300/250" align="right" />
+ * <img src="https://picsum.photos/id/20/200/300" align="right" />
  *
  * <h3>Why does this project exist?</h3>
  *
@@ -12,10 +12,8 @@
  *  the official docs
  * </a>
  *
- * The API that is provided by the `@up/server` is used in `@up/client' -
- * sample React App, powered by
- * on <a href="https://vitejs.dev/" target="_blank">Vite</a>
- *
+ * The API that is provided by the `@up/server` is used in `@up/client` package
+ * - a sample React App, powered by <a href="https://vitejs.dev/" target="_blank">Vite</a>
  *
  * @remarks
  * All interfaces are prefixed with `I`
