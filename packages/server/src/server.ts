@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config();
-import { initDB } from "./util/initDB";
 import { createServer } from "http";
+import { initDB } from "./util/initDB";
 import app from "./app";
 import { startApolloServer } from "./apolloServer";
 
