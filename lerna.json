@@ -4,7 +4,7 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "message": "chore: Publish🎬"
+      "message": "chore: publish new release🎬"
     }
   }
 }
