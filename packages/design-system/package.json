@@ -42,5 +42,6 @@
   "volta": {
     "node": "20.15.1",
     "yarn": "4.3.1"
-  }
+  },
+  "gitHead": "bc5b8e7a313f74f03d5dbbacebdadd9394333f2e"
 }
