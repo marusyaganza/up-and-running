@@ -5922,7 +5922,7 @@ __metadata:
     "@types/react-dom": "npm:^18.2.22"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
     "@typescript-eslint/parser": "npm:^7.2.0"
-    "@up/design-system": "npm:^0.3.0"
+    "@up/design-system": "npm:^0.3.1"
     "@vitejs/plugin-react": "npm:^4.2.1"
     dayjs: "npm:^1.11.11"
     eslint: "npm:^8.57.0"
@@ -5937,7 +5937,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@up/design-system@npm:^0.3.0, @up/design-system@workspace:packages/design-system":
+"@up/design-system@npm:^0.3.1, @up/design-system@workspace:packages/design-system":
   version: 0.0.0-use.local
   resolution: "@up/design-system@workspace:packages/design-system"
   dependencies:

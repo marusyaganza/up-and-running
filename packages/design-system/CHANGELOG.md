@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/marusyaganza/up-and-running/compare/@up/design-system@0.3.0...@up/design-system@0.3.1) (2024-07-28)
+
+
+### Bug Fixes
+
+* configure test verdaccio auth ([870ad00](https://github.com/marusyaganza/up-and-running/commit/870ad00bb5ffcbfdd6f5a90840369b5f94d95da0))
+
+
+
+
+
 # 0.3.0 (2024-07-28)
 
 

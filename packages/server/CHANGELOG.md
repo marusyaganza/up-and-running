@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/marusyaganza/up-and-running/compare/@up/server@0.2.1...@up/server@0.2.2) (2024-07-28)
+
+
+### Bug Fixes
+
+* configure test verdaccio auth ([870ad00](https://github.com/marusyaganza/up-and-running/commit/870ad00bb5ffcbfdd6f5a90840369b5f94d95da0))
+
+
+
+
+
 ## [0.2.1](https://github.com/marusyaganza/up-and-running/compare/@up/server@0.2.0...@up/server@0.2.1) (2024-07-28)
 
 **Note:** Version bump only for package @up/server
