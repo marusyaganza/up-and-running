@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "main": "dist/server.js",
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "build": "tsc",
     "dev": "yarn build && nodemon dist/server.js & yarn build --watch --preserveWatchOutput",
@@ -11,8 +13,6 @@
     "codegen": "graphql-codegen --config codegen.ts generated",
     "clean": "rimraf node_modules dist generated tsconfig.tsbuildinfo"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.4",
     "@graphql-codegen/cli": "^5.0.2",

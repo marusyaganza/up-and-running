@@ -2,6 +2,8 @@
   "name": "@up/client",
   "version": "0.1.0",
   "type": "module",
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
