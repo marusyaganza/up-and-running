@@ -4,8 +4,9 @@ import {
   isStarshipData,
   isPlanetData,
 } from "../types/type-guards";
-const PLANETS_API = process.env.PLANETS_API || "";
-const STARSHIP_API = process.env.STARSHIP_API || "";
+const PLANETS_API = process.env.PLANETS_API || "https://swapi.info/api/planets";
+const STARSHIP_API =
+  process.env.STARSHIP_API || "https://swapi.info/api/starships";
 
 export async function fetchPlanets(): Promise<IPlanetData[]> {
   let planets: IPlanetData[] = [];

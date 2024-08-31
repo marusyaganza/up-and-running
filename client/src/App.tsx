@@ -4,7 +4,7 @@ import { NotificationProvider } from "./context/NotificationContext";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/graphql";
 
 const client = new ApolloClient({
   uri: API_URL,

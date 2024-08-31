@@ -4,7 +4,7 @@ export function isStarshipData(data: any): data is IStarshipData {
   return (
     typeof data.passengers === "number" &&
     typeof data.model === "string" &&
-    data.name === "string"
+    typeof data.name === "string"
   );
 }
 
