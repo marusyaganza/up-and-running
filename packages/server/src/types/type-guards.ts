@@ -1,11 +1,11 @@
 import { IPlanetData, IStarshipData } from "./types";
 
 export function isStarshipData(data: any): data is IStarshipData {
-  return (
-    typeof data.passengers === "number" &&
+  const isValid =
+    typeof data.passengers === "string" &&
     typeof data.model === "string" &&
-    data.name === "string"
-  );
+    typeof data.name === "string";
+  return isValid;
 }
 
 export function isPlanetData(data: any): data is IPlanetData {
