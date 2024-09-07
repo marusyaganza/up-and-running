@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+WORKDIR /app/server
+
+COPY server/package.json server/yarn.lock /app/server/
+
+RUN yarn --production
+
+COPY server /app/server
+
+COPY shared /app/shared
+
+RUN yarn codegen
+
+RUN yarn build
+
+EXPOSE 4000
+
+CMD ["yarn", "start:prod"]

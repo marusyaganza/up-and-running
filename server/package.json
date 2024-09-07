@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build --watch --preserveWatchOutput & nodemon dist/server.js",
+    "start:prod": "node dist/server.js",
     "lint": "eslint src",
     "test": "jest --detectOpenHandles",
     "codegen": "graphql-codegen --config codegen.ts"
@@ -25,7 +26,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "express-validator": "^7.0.1",
     "graphql": "^16.9.0",
     "mongoose": "^8.3.3",
     "morgan": "^1.10.0",
@@ -42,10 +42,7 @@
     "nodemon": "^3.1.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.1.5",
-    "typescript-eslint": "^7.16.1",
-    "@graphql-codegen/typescript-resolvers": "4.2.1",
-    "@graphql-codegen/typescript": "4.0.9",
-    "@graphql-codegen/cli": "5.0.2"
+    "typescript-eslint": "^7.16.1"
   },
   "volta": {
     "node": "18.18.0",

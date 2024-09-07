@@ -1,0 +1,12 @@
+test
+eslint.config.json
+jest.config.json
+tsconfig.test.json
+node_modules
+generated
+dist
+.git
+.github
+.husky
+.yarn
+.pnp.*
