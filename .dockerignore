@@ -10,3 +10,4 @@ dist
 .husky
 .yarn
 .pnp.*
+.env

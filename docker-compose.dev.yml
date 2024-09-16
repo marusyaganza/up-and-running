@@ -1,0 +1,33 @@
+services:
+  up-db:
+    image: mongo:4
+    volumes: 
+      - /data/dev-db
+  server:
+    build:
+      dockerfile: Dockerfile.server
+    env_file:
+      - './server/.env'
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server:/app/server
+      - ./shared:/app/shared
+      - /app/server/node_modules
+    depends_on:
+      - up-db
+  client:
+    build:
+      dockerfile: Dockerfile.client.dev
+    ports:
+      - 5000:5000
+    volumes:
+      - ./client:/app/client
+      - ./shared:/app/shared
+      - /app/client/node_modules
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+volumes:
+  data:
