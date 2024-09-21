@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { FlightsTable, Spinner } from "@up/design-system";
 import { useQuery } from "@apollo/client";
-import { PageLayout } from "../components/PageLayout/PageLayout";
 import { NotificationContext } from "../context/NotificationContext";
 
 import { FLIGTHS_QUERY } from "../gql/queries";
@@ -23,10 +22,10 @@ const HistoryPage = () => {
   }, [error]);
 
   return (
-    <PageLayout>
+    <>
       <h1>Flights</h1>
       {loading ? <Spinner /> : <FlightsTable flights={data?.flights || []} />}
-    </PageLayout>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 export const ROUTES = {
-  flights: "flights",
+  scheduleFlight: "scheduleFlight",
   upcoming: "upcoming",
   history: "history",
+  profile: "profile",
 };

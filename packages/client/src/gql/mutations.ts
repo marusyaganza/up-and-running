@@ -16,3 +16,21 @@ export const CANCEL_FLIGHT_MUTATION = gql`
     }
   }
 `;
+
+export const LOGIN_MUTATION = gql`
+  mutation Login($input: LoginInput!) {
+    login(input: $input) {
+      token
+      role
+    }
+  }
+`;
+
+export const SING_UP_MUTATION = gql`
+  mutation SignUp($input: SignUpInput!) {
+    signUp(input: $input) {
+      token
+      role
+    }
+  }
+`;

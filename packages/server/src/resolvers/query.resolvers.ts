@@ -1,3 +1,5 @@
+import { GraphQLError } from "graphql";
+import { authenticated } from "../auth";
 import { QueryResolvers } from "../generated/graphql";
 import {
   getFlights,
@@ -24,12 +26,22 @@ export const queryResolvers: QueryResolvers<IContext> = {
     const flights = await getFlights();
     return flights;
   },
+
   planets: async () => {
     const planets = await getPlanets();
     return planets.map((starship) => starship.name);
   },
+
   starships: async () => {
     const starships = await getStarships();
     return starships.map((starship) => starship.model);
   },
+
+  user: authenticated(async (_, __, { user, model }) => {
+    const existingUser = await model.Users.getUser(user.id);
+    if (!existingUser) {
+      throw new GraphQLError("User is not found");
+    }
+    return existingUser;
+  }),
 };

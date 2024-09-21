@@ -5,3 +5,8 @@ export * from "./components/Header/Header";
 export * from "./components/Select/Select";
 export * from "./components/Snackbar/Snackbar";
 export * from "./components/Spinner/Spinner";
+export * from "./components/LoginForm/LoginForm";
+export * from "./components/Modal/Modal";
+export * from "./components/AuthForm/AuthForm";
+export * from "./components/LoginForm/LoginForm";
+export * from "./components/SignUpForm/SignUpForm";

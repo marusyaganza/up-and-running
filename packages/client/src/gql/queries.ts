@@ -19,3 +19,22 @@ export const FLIGTHS_QUERY = gql`
     }
   }
 `;
+
+export const USER_QUERY = gql`
+  query User {
+    user {
+      lastName
+      firstName
+      email
+      role
+    }
+  }
+`;
+
+export const AUTH_QUERY = gql`
+  query Auth {
+    user {
+      role
+    }
+  }
+`;

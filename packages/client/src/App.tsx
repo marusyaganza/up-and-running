@@ -1,15 +1,9 @@
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
 import { NotificationProvider } from "./context/NotificationContext";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import "./App.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/graphql";
-
-const client = new ApolloClient({
-  uri: API_URL,
-  cache: new InMemoryCache(),
-});
+import { client } from "./apolloClient";
 
 function App() {
   return (

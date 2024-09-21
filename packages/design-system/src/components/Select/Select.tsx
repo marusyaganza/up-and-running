@@ -9,18 +9,24 @@ import {
   InputLabel,
 } from "@mui/material";
 
-export interface SelectProps {
-  onChange: (val: string) => void;
+export interface SelectProps<T extends string> {
+  onChange: (val: T) => void;
   label: string;
-  options: string[];
+  options: T[];
   error?: string;
 }
 
-export const Select = ({ onChange, options, label, error }: SelectProps) => {
+export const Select = function <T extends string>({
+  onChange,
+  options,
+  label,
+  error,
+}: SelectProps<T>) {
   const [value, setValue] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    const val = event.target.value;
+    // find a better solution for this type
+    const val = event.target.value as T;
     setValue(val);
     onChange(val);
   };

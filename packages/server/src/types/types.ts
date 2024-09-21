@@ -1,3 +1,4 @@
+import { Role } from "../generated/graphql";
 import { ModelType } from "../models";
 
 export interface IPlanetData {
@@ -31,6 +32,25 @@ export interface IFlight {
   id: string;
 }
 
+export interface IUser {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  role?: Role;
+}
+
 export interface IContext {
   model: ModelType;
+  user?: ITokenData;
+}
+
+export interface IAutenticatedContext {
+  model: ModelType;
+  user: ITokenData;
+}
+
+export interface ITokenData {
+  id: string;
 }

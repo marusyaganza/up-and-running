@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import dayjs from "dayjs";
 import { FlightsTable, FlightsTableProps, Spinner } from "@up/design-system";
-import { PageLayout } from "../components/PageLayout/PageLayout";
 import { NotificationContext } from "../context/NotificationContext";
 import { FLIGTHS_QUERY } from "../gql/queries";
 import { CANCEL_FLIGHT_MUTATION } from "../gql/mutations";
@@ -53,6 +52,10 @@ const UpcomingPage = () => {
                 query: FLIGTHS_QUERY,
                 variables: { filter: { upcoming: true } },
               },
+              {
+                query: FLIGTHS_QUERY,
+                variables: { filter: { past: true } },
+              },
             ],
           });
         };
@@ -86,10 +89,10 @@ const UpcomingPage = () => {
   const isLoading = loading || cancelFlightResult?.loading;
 
   return (
-    <PageLayout>
+    <>
       <h1>Upcoming flights</h1>
       {isLoading ? <Spinner /> : <FlightsTable flights={flights} withAction />}
-    </PageLayout>
+    </>
   );
 };
 

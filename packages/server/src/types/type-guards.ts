@@ -1,4 +1,9 @@
-import { IPlanetData, IStarshipData } from "./types";
+import {
+  IAutenticatedContext,
+  IPlanetData,
+  IStarshipData,
+  ITokenData,
+} from "./types";
 
 export function isStarshipData(data: any): data is IStarshipData {
   const isValid =
@@ -22,4 +27,16 @@ export function assertIsTypedArray<T>(
   if (data.some((item) => !validator(item))) {
     throw new Error("Data is invalid");
   }
+}
+
+export function isAutenticatedContext(data: any): data is IAutenticatedContext {
+  const user = data?.user;
+  if (!user) {
+    return false;
+  }
+  return "id" in user;
+}
+
+export function isITokenData(data: any): data is ITokenData {
+  return "id" in data;
 }

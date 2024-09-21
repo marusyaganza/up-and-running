@@ -5,12 +5,18 @@ import { loadFilesSync } from "@graphql-tools/load-files";
 import { resolvers } from "./resolvers";
 import { model } from "./models";
 import { IContext } from "./types/types";
-import { Server } from "http";
+import { IncomingMessage, Server } from "http";
+import { getUserFromToken } from "./auth";
 import app from "./app";
 import path from "path";
 
-async function context() {
-  return { model };
+async function context({ req }: { req: IncomingMessage }): Promise<IContext> {
+  const token = req.headers?.authorization?.split(" ")[1];
+  let user;
+  if (token) {
+    user = getUserFromToken(token);
+  }
+  return { model, user };
 }
 
 const typeDefs = loadFilesSync(

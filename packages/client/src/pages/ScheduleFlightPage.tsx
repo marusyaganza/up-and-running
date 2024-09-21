@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PageLayout } from "../components/PageLayout/PageLayout";
 import { FlightForm, Spinner } from "@up/design-system";
 import { ROUTES } from "../router/routes";
 import { NotificationContext } from "../context/NotificationContext";
@@ -13,7 +12,7 @@ import {
   FlightInput,
 } from "../generated/graphql";
 
-const FlightsPage = () => {
+const ScheduleFlightPage = () => {
   const navigate = useNavigate();
   const { setNotification } = useContext(NotificationContext);
   const { loading, data, error } = useQuery<PlanetsStarshipsQuery>(
@@ -56,8 +55,8 @@ const FlightsPage = () => {
   };
 
   return (
-    <PageLayout>
-      <h1>Flights page</h1>
+    <>
+      <h1>Schedule flight</h1>
       {loading ? (
         <Spinner />
       ) : (
@@ -67,8 +66,8 @@ const FlightsPage = () => {
           onSubmit={handleFormSubmit}
         />
       )}
-    </PageLayout>
+    </>
   );
 };
 
-export default FlightsPage;
+export default ScheduleFlightPage;
