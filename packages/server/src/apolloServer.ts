@@ -1,33 +1,30 @@
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { loadFilesSync } from "@graphql-tools/load-files";
-import { resolvers } from "./resolvers";
-import { model } from "./models";
 import { IContext } from "./types/types";
-import { IncomingMessage, Server } from "http";
-import { getUserFromToken } from "./auth";
+import { Server } from "http";
 import app from "./app";
-import path from "path";
+import { context } from "./apolloContext";
+import { schema } from "./gqlSchema";
 
-async function context({ req }: { req: IncomingMessage }): Promise<IContext> {
-  const token = req.headers?.authorization?.split(" ")[1];
-  let user;
-  if (token) {
-    user = getUserFromToken(token);
-  }
-  return { model, user };
-}
-
-const typeDefs = loadFilesSync(
-  path.join(__dirname, "../../shared/schema/*.graphql")
-);
-
-export async function startApolloServer(httpServer: Server) {
+export async function startApolloServer(
+  httpServer: Server,
+  serverCleanup: any
+) {
   const apolloServer = new ApolloServer<IContext>({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    schema,
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      {
+        async serverWillStart() {
+          return {
+            async drainServer() {
+              await serverCleanup.dispose();
+            },
+          };
+        },
+      },
+    ],
   });
 
   await apolloServer.start();

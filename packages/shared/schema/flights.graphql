@@ -35,3 +35,7 @@ type Mutation {
   cancelFlight(id: ID!): Flight!
   updateFlight(id: ID!, input: UpdateFlightInput!): Flight!
 }
+
+type Subscription {
+  flightScheduled: Flight!
+}
