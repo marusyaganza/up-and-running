@@ -31,14 +31,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&.cancelled": {
     backgroundColor: theme.palette.warning.light,
   },
+  "&.highlighted": {
+    backgroundColor: theme.palette.secondary.light,
+  },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-interface FlightType extends Flight {
+export interface FlightType extends Flight {
   action?: () => void;
+  isHighlighted?: boolean;
 }
 
 export interface FlightsTableProps {
@@ -65,7 +69,13 @@ export const FlightsTable = ({ flights, withAction }: FlightsTableProps) => {
             return (
               <StyledTableRow
                 key={flight.id}
-                className={flight?.isCancelled ? "cancelled" : ""}
+                className={
+                  flight?.isHighlighted
+                    ? "highlighted"
+                    : flight?.isCancelled
+                      ? "cancelled"
+                      : ""
+                }
               >
                 <StyledTableCell component="th" scope="row">
                   {date} {flight?.isCancelled ? "[cancelled]" : ""}

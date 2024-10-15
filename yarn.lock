@@ -5982,6 +5982,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.6"
     graphql: "npm:^16.9.0"
+    graphql-ws: "npm:^5.16.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.23.1"

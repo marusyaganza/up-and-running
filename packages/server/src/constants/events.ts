@@ -1,0 +1,3 @@
+export const EVENTS = {
+  FLIGHT_SCHEDULED: "FLIGHT_SCHEDULED",
+};

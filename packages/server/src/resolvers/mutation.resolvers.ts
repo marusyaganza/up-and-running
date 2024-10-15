@@ -3,13 +3,15 @@ import { MutationResolvers, Role } from "../generated/graphql";
 
 import { IContext } from "../types/types";
 import { authorized } from "../auth";
-import { PubSub } from "graphql-subscriptions";
-
-const pubsub = new PubSub();
+import { EVENTS } from "../constants/events";
+import { pubsub } from "../pubsub";
 
 export const mutationResolvers: MutationResolvers<IContext> = {
   addNewFlight: authorized(async (_, { input }, { model }) => {
     const flight = await model.Flights.scheduleFlight(input);
+    pubsub.publish(EVENTS.FLIGHT_SCHEDULED, {
+      flightScheduled: flight,
+    });
     return flight;
   }, Role.Admin),
 
@@ -26,11 +28,6 @@ export const mutationResolvers: MutationResolvers<IContext> = {
     if (!flight) {
       throw new GraphQLError(`Updating flight ${id} failed`);
     }
-    pubsub.publish("FLIGHT_SCHEDULED", {
-      flightScheduled: {
-        ...flight,
-      },
-    });
     return flight;
   }, Role.Admin),
 

@@ -28,6 +28,7 @@
     "dayjs": "^1.11.11",
     "eslint": "^8.57.0",
     "graphql": "^16.9.0",
+    "graphql-ws": "^5.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
