@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import dayjs from "dayjs";
 import { FlightsTable, FlightsTableProps, Spinner } from "@up/design-system";
 import { PageLayout } from "../components/PageLayout/PageLayout";
-import { NotificationContext } from "../context/NotificationContext";
+import { NotificationSetter } from "../context/notification/NotificationContext";
 import { FLIGTHS_QUERY } from "../gql/queries";
 import { CANCEL_FLIGHT_MUTATION } from "../gql/mutations";
 import { CancelFlightMutation, FlightQuery } from "../generated/graphql";
@@ -13,7 +13,7 @@ const UpcomingPage = () => {
   const { loading, data, error } = useQuery<FlightQuery>(FLIGTHS_QUERY, {
     variables: { filter: { upcoming: true } },
   });
-  const { setNotification } = useContext(NotificationContext);
+  const setNotification = useContext(NotificationSetter);
 
   useEffect(() => {
     if (error) {

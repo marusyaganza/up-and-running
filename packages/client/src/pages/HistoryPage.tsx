@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { FlightsTable, Spinner } from "@up/design-system";
 import { useQuery } from "@apollo/client";
 import { PageLayout } from "../components/PageLayout/PageLayout";
-import { NotificationContext } from "../context/NotificationContext";
+import { NotificationSetter } from "../context/notification/NotificationContext";
 
 import { FLIGTHS_QUERY } from "../gql/queries";
 import { FlightQuery } from "../generated/graphql";
@@ -11,7 +11,7 @@ const HistoryPage = () => {
   const { loading, data, error } = useQuery<FlightQuery>(FLIGTHS_QUERY, {
     variables: { filter: { past: true } },
   });
-  const { setNotification } = useContext(NotificationContext);
+  const setNotification = useContext(NotificationSetter);
 
   useEffect(() => {
     if (error) {

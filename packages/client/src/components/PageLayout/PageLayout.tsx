@@ -1,6 +1,9 @@
 import { PropsWithChildren, useContext, useEffect, useState } from "react";
 import { Header, Snackbar } from "@up/design-system";
-import { NotificationContext } from "../../context/NotificationContext";
+import {
+  NotificationSetter,
+  NotificationValue,
+} from "../../context/notification/NotificationContext";
 import styles from "./PageLayout.module.css";
 import { ROUTES } from "../../router/routes";
 
@@ -11,7 +14,8 @@ const pages = [
 ];
 
 export const PageLayout = ({ children }: PropsWithChildren<unknown>) => {
-  const { notification, setNotification } = useContext(NotificationContext);
+  const setNotification = useContext(NotificationSetter);
+  const notification = useContext(NotificationValue);
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {

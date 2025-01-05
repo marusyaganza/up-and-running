@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import { Router } from "./router/router";
 
-import { NotificationProvider } from "./context/NotificationProvider";
+import { NotificationProvider } from "./context/notification/NotificationProvider";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./App.css";
 

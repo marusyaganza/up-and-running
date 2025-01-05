@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { FlightForm, Spinner } from "@up/design-system";
 import { ROUTES } from "../router/routes";
-import { NotificationContext } from "../context/NotificationContext";
+import { NotificationSetter } from "../context/notification/NotificationContext";
 import { useQuery, useMutation } from "@apollo/client";
 import { PLATETS_STARSHIPS_QUERY, FLIGTHS_QUERY } from "../gql/queries";
 import { NEW_FLIGHT_MUTATION } from "../gql/mutations";
@@ -15,7 +15,7 @@ import {
 
 const FlightsPage = () => {
   const navigate = useNavigate();
-  const { setNotification } = useContext(NotificationContext);
+  const setNotification = useContext(NotificationSetter);
   const { loading, data, error } = useQuery<PlanetsStarshipsQuery>(
     PLATETS_STARSHIPS_QUERY
   );
