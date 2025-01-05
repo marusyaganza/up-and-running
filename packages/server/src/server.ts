@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-require-imports */
 require("dotenv").config();
 import { createServer } from "http";
 import { initDB } from "./util/initDB";

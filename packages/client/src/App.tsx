@@ -1,6 +1,7 @@
 import { RouterProvider } from "react-router-dom";
-import { router } from "./router/router";
-import { NotificationProvider } from "./context/NotificationContext";
+import { Router } from "./router/router";
+
+import { NotificationProvider } from "./context/NotificationProvider";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./App.css";
 
@@ -10,6 +11,8 @@ const client = new ApolloClient({
   uri: API_URL,
   cache: new InMemoryCache(),
 });
+
+const router = Router();
 
 function App() {
   return (

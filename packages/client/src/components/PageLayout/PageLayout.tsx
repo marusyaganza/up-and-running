@@ -9,11 +9,8 @@ const pages = [
   { text: "Upcoming", url: ROUTES.upcoming },
   { text: "History", url: ROUTES.history },
 ];
-export interface PageLayoutProps {}
 
-export const PageLayout = ({
-  children,
-}: PropsWithChildren<PageLayoutProps>) => {
+export const PageLayout = ({ children }: PropsWithChildren<unknown>) => {
   const { notification, setNotification } = useContext(NotificationContext);
   const [showNotification, setShowNotification] = useState(false);
 
