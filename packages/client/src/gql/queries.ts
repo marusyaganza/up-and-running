@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { FLIGTH_FRAGMENT } from "./fragments";
 
 export const PLATETS_STARSHIPS_QUERY = gql`
   query PlanetsStarships {
@@ -10,12 +11,8 @@ export const PLATETS_STARSHIPS_QUERY = gql`
 export const FLIGTHS_QUERY = gql`
   query Flight($filter: FlightsFilter) {
     flights(filter: $filter) {
-      starship
-      origin
-      id
-      destination
-      date
-      isCancelled
+      ...FlightFragment
     }
   }
+  ${FLIGTH_FRAGMENT}
 `;
