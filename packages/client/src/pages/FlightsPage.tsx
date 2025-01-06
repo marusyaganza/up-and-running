@@ -52,7 +52,15 @@ const FlightsPage = () => {
   }, [flightResult.error]);
 
   const handleFormSubmit = (input: FlightInput) => {
-    scheduleFlight({ variables: { input }, refetchQueries: [FLIGTHS_QUERY] });
+    scheduleFlight({
+      variables: { input },
+      refetchQueries: [
+        {
+          query: FLIGTHS_QUERY,
+          variables: { filter: { upcoming: true } },
+        },
+      ],
+    });
   };
 
   return (

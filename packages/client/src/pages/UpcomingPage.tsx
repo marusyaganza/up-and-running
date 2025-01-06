@@ -53,6 +53,10 @@ const UpcomingPage = () => {
                 query: FLIGTHS_QUERY,
                 variables: { filter: { upcoming: true } },
               },
+              {
+                query: FLIGTHS_QUERY,
+                variables: { filter: { past: true } },
+              },
             ],
           });
         };

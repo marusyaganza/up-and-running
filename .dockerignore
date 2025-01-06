@@ -1,0 +1,48 @@
+# generated files
+**/node_modules
+**/tsconfig.tsbuildinfo
+**/temp
+**/generated
+**/dist
+
+# env files
+**/.env.*
+.env
+
+# config files
+**/.yarnrc.yml
+**/.gitignore
+**/nodemon.json
+**/nodemon.example.json
+
+# linting
+**/prettier.config.js
+**/commitlint.config.js
+**/eslint.config.mjs
+**/.eslint.*
+
+#testing
+**/cypress
+**/coverage
+**/cypress.config.ts
+**/tests
+**/*.test.?s
+**/__tests__
+**/mocks
+**/babel.config.js
+**/jest.config.js
+**/tsconfig.test.json
+
+# documentation
+**/README.md
+**/CHANGELOG.md
+**/.storybook
+
+# system folders
+**/.git
+**/.vscode
+**/.yarn
+**/.husky
+
+# bash scripts
+**/*.sh
