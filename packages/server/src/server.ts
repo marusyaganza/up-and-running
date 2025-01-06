@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-require("dotenv").config();
+import "dotenv/config";
 import { createServer } from "http";
 import { initDB } from "./util/initDB";
 import app from "./app";

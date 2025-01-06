@@ -1,0 +1,27 @@
+FROM node:20.15.1 AS build
+
+# Set Yarn version
+ENV YARN_VERSION=1.22.19
+
+RUN yarn set version ${YARN_VERSION}
+
+WORKDIR /app
+
+COPY package.json yarn.lock lerna.json /app/
+
+COPY packages/client /app/packages/client
+COPY packages/shared /app/packages/shared
+COPY packages/design-system /app/packages/design-system
+COPY packages/tsconfig.settings.json /app/packages
+
+RUN yarn install
+
+RUN yarn codegen
+
+RUN yarn build:client
+
+FROM nginx:stable-alpine
+
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/packages/client/dist /usr/share/nginx/html

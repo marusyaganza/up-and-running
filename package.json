@@ -13,6 +13,8 @@
   "scripts": {
     "codegen": "lerna run codegen",
     "build": "lerna run build",
+    "build:client": "lerna run build --scope '@up/client'",
+    "build:server": "lerna run prod --scope '@up/server'",
     "start": "lerna run dev",
     "clean": "lerna run clean",
     "lint": "lerna run lint --stream",

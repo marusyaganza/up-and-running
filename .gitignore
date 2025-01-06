@@ -132,7 +132,8 @@ dist
 *storybook.log
 generated
 storybook-static
-
+.yarnrc.yml
+.yarn
 
 
 .nx/cache
