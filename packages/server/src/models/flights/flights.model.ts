@@ -6,14 +6,14 @@ import {
 } from "../../generated/graphql";
 import { Document } from "mongoose";
 
-function formatDate<T extends { date: Date; toObject: Document["toObject"] }>(
-  data: T
-) {
+export function formatDate<
+  T extends { date: Date; toObject: Document["toObject"] }
+>(data: T) {
   const dataObject = data.toObject();
   return { ...dataObject, date: dataObject.date.toDateString() };
 }
 
-function formatDateInArray<
+export function formatDateInArray<
   T extends { date: Date; toObject: Document["toObject"] }
 >(arr: T[]) {
   return arr.map(formatDate);

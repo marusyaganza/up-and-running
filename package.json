@@ -17,6 +17,7 @@
     "build:server": "lerna run prod --scope '@up/server'",
     "start": "lerna run dev",
     "cypress": "lerna run cypress",
+    "test": "lerna run test --stream",
     "cypress:run": "lerna run cypress:run",
     "clean": "lerna run clean",
     "lint": "lerna run lint --stream",

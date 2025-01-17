@@ -30,7 +30,7 @@ export async function disconnectFromDb() {
 
 export async function dropDb() {
   try {
-    await connection.db.dropDatabase();
+    await connection?.db?.dropDatabase();
   } catch (err) {
     console.error("mongoose drop db error", err);
   }
