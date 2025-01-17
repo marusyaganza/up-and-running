@@ -28,7 +28,7 @@ export const DateSelector = ({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DatePicker"]}>
-        <FormControl fullWidth error={hasError}>
+        <FormControl data-cy="date" fullWidth error={hasError}>
           <DatePicker
             slotProps={{
               openPickerButton: { color: hasError ? "warning" : "default" },
@@ -37,7 +37,7 @@ export const DateSelector = ({
             onChange={handleChange}
             disablePast
           />
-          <FormHelperText>{error}</FormHelperText>
+          <FormHelperText data-cy="date-error">{error}</FormHelperText>
         </FormControl>
       </DemoContainer>
     </LocalizationProvider>

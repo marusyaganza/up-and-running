@@ -14,9 +14,16 @@ export interface SelectProps {
   label: string;
   options: string[];
   error?: string;
+  dataCy?: string;
 }
 
-export const Select = ({ onChange, options, label, error }: SelectProps) => {
+export const Select = ({
+  onChange,
+  options,
+  label,
+  error,
+  dataCy = "select",
+}: SelectProps) => {
   const [value, setValue] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -26,17 +33,17 @@ export const Select = ({ onChange, options, label, error }: SelectProps) => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box data-cy={dataCy} sx={{ minWidth: 120 }}>
       <FormControl fullWidth error={Boolean(error?.length)}>
         <InputLabel>{label}</InputLabel>
         <UISelect value={value} label={label} onChange={handleChange}>
           {options.map((option) => (
-            <MenuItem key={option} value={option}>
+            <MenuItem data-cy={option} key={option} value={option}>
               {option}
             </MenuItem>
           ))}
         </UISelect>
-        <FormHelperText>{error}</FormHelperText>
+        <FormHelperText data-cy={`${dataCy}-error`}>{error}</FormHelperText>
       </FormControl>
     </Box>
   );

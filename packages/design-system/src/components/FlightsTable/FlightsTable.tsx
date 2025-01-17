@@ -67,19 +67,25 @@ export const FlightsTable = ({ flights, withAction }: FlightsTableProps) => {
                 key={flight.id}
                 className={flight?.isCancelled ? "cancelled" : ""}
               >
-                <StyledTableCell component="th" scope="row">
+                <StyledTableCell data-cy="date" component="th" scope="row">
                   {date} {flight?.isCancelled ? "[cancelled]" : ""}
                 </StyledTableCell>
-                <StyledTableCell align="right">
+                <StyledTableCell ata-cy="destination" align="right">
                   {flight.destination}
                 </StyledTableCell>
-                <StyledTableCell align="right">{flight.origin}</StyledTableCell>
-                <StyledTableCell align="right">
+                <StyledTableCell data-cy="origin" align="right">
+                  {flight.origin}
+                </StyledTableCell>
+                <StyledTableCell data-cy="starship" align="right">
                   {flight.starship}
                 </StyledTableCell>
                 {flight?.action && (
                   <StyledTableCell align="right">
-                    <IconButton onClick={flight?.action} aria-label="delete">
+                    <IconButton
+                      data-cy="cancel-btn"
+                      onClick={flight?.action}
+                      aria-label="delete"
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </StyledTableCell>

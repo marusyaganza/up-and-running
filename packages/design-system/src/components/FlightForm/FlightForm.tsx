@@ -74,22 +74,25 @@ export const FlightForm = ({
     };
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form data-cy="flight-form" onSubmit={handleSubmit}>
       <Card>
         <StyledCardContent>
           <Select
+            dataCy="origin"
             label="Origin"
             options={planets}
             error={errors[Fields.Origin]}
             onChange={getChangeHandler(Fields.Origin)}
           />
           <Select
+            dataCy="destination"
             label="Destination"
             options={planets}
             error={errors[Fields.Destination]}
             onChange={getChangeHandler(Fields.Destination)}
           />
           <Select
+            dataCy="starship"
             label="Starship"
             options={starships}
             error={errors[Fields.Starship]}
