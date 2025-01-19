@@ -1,13 +1,16 @@
-name: Ready
-on
-    push
-        branches: [ts-monoripo-ci]
+name: Up and Running
+on:
+  push:
+#     branches: [master, develop]
+#   pull_request:
+#     branches: [master, develop]
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-            - name: get code
-              uses: actions/checkout@v4
-            - name: linting
-              run: yarn install
-              run: yarn lint
+  build:
+    runs-on: ubuntu-latest
+    steps: -uses
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: yarn
+      - run: yarn lint
