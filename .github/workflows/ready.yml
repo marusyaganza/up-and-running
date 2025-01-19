@@ -84,8 +84,6 @@ jobs:
         with:
           mongodb-version: "4.0"
       - name: Start the project
-        run: yarn
-        run: yarn codegen
-        run: yarn start
+        run: yarn && yarn start
       - name: Cypress tests
-        run: cypress:run
+        run: yarn cypress:run
