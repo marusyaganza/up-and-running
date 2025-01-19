@@ -60,53 +60,53 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn codegen
       - run: yarn test
-cypress:
-  runs-on: ubuntu-latest
-  needs: lint
-  env:
-    VITE_API_URL: http://localhost:4000/graphql
-    FE_URL: http://localhost:5000
-    PLANETS_API: ${{ secrets.PLANETS_API }}
-    STARSHIP_API: ${{ secrets.STARSHIP_API }}
-  steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: "20.15.1"
-    - name: Configure yarn
-      run: yarn set version 4.3.1
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-    - uses: actions/cache@v3
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: Cache MongoDB binary
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/mongodb-binaries
-        key: ${{ runner.os }}-mongodb-${{ matrix.mongodb-version }}
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.12.0
-      with:
-        mongodb-version: "4.0"
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-    - name: Generate code
-      run: yarn codegen
-    - name: Start the project
-      run: yarn start & echo $! > .pidfile
-    - name: Wait for project to be ready
-      run: |
-        while ! nc -z localhost 5000; do
-          sleep 1
-        done
-    - name: Run Cypress tests
-      run: yarn cypress:run
-    - name: Stop the project
-      if: always()
-      run: kill $(cat .pidfile)
+  cypress:
+    runs-on: ubuntu-latest
+    needs: lint
+    env:
+      VITE_API_URL: http://localhost:4000/graphql
+      FE_URL: http://localhost:5000
+      PLANETS_API: ${{ secrets.PLANETS_API }}
+      STARSHIP_API: ${{ secrets.STARSHIP_API }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.15.1"
+      - name: Configure yarn
+        run: yarn set version 4.3.1
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Cache MongoDB binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: ${{ runner.os }}-mongodb-${{ matrix.mongodb-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: "4.0"
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Generate code
+        run: yarn codegen
+      - name: Start the project
+        run: yarn start & echo $! > .pidfile
+      - name: Wait for project to be ready
+        run: |
+          while ! nc -z localhost 5000; do
+            sleep 1
+          done
+      - name: Run Cypress tests
+        run: yarn cypress:run
+      - name: Stop the project
+        if: always()
+        run: kill $(cat .pidfile)
