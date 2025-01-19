@@ -98,6 +98,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Generate code
         run: yarn codegen
+      - name: Install netcat
+        run: sudo apt-get install -y netcat
       - name: Start the project
         run: yarn start & echo $! > .pidfile
       - name: Wait for project to be ready
@@ -107,6 +109,17 @@ jobs:
           done
       - name: Run Cypress tests
         run: yarn cypress:run
+        continue-on-error: true
+        id: cypress
+      - name: Upload Cypress screenshots
+        uses: actions/upload-artifact@v3
+        if: failure() && steps.cypress.outcome == 'failure'
+        with:
+          name: cypress-screenshots
+          path: packages/client/cypress/screenshots
       - name: Stop the project
         if: always()
         run: kill $(cat .pidfile)
+      - name: Check Cypress result
+        if: steps.cypress.outcome == 'failure'
+        run: exit 1
