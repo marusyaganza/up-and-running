@@ -42,7 +42,7 @@ describe("Flights page", () => {
     });
     cy.get('button[type="submit"]')
       .contains("Schedule flight")
-      .should("be.enabled");
+      .should("be.disabled");
   });
 
   it("validates flight form", () => {
