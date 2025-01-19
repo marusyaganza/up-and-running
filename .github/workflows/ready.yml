@@ -1,4 +1,4 @@
-name: Up and Running
+name: Ready
 on:
   push:
     branches: [ts-monorepo-ci, develop]
