@@ -1,9 +1,9 @@
 name: Up and Running
 on:
   push:
-#     branches: [master, develop]
-#   pull_request:
-#     branches: [master, develop]
+    branches: [ts-monorepo-ci, develop]
+  pull_request:
+    branches: [master, develop]
 jobs:
   build:
     runs-on: ubuntu-latest
