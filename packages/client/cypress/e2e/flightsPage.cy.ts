@@ -46,10 +46,7 @@ describe("Flights page", () => {
   });
 
   it("validates flight form", () => {
-    cy.dataCy("flight-form")
-      .find("button")
-      .contains("Schedule flight 3")
-      .click();
+    cy.dataCy("flight-form").find("button").contains("Schedule flight").click();
     requiredFields.forEach((field) => {
       cy.dataCy(`${field}-error`)
         .should("be.visible")
