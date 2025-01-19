@@ -1,0 +1,13 @@
+name: Ready
+on
+    push
+        branches: [ts-monoripo-ci]
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code
+              uses: actions/checkout@v4
+            - name: linting
+              run: yarn install
+              run: yarn lint
