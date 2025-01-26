@@ -71,12 +71,12 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: .
-          config-file: packages/client/cypress.config.ts
+          # config-file: packages/client/cypress.config.ts
           install-command: yarn install --frozen-lockfile
           start: yarn start
           wait-on: "http://localhost:5000"
           project: ./packages/client
-          spec: packages/client/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}
+          # spec: packages/client/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         if: failure()
