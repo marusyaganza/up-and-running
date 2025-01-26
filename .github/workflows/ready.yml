@@ -43,6 +43,11 @@ jobs:
 
   cypress:
     needs: lint
+    env:
+      VITE_API_URL: http://localhost:4000/graphql
+      FE_URL: http://localhost:5000
+      PLANETS_API: ${{ secrets.PLANETS_API }}
+      STARSHIP_API: ${{ secrets.STARSHIP_API }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
