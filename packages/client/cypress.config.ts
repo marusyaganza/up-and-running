@@ -12,7 +12,6 @@ export default defineConfig({
     baseUrl: "http://localhost:5000",
     viewportWidth: 1300,
     viewportHeight: 1000,
-    // supportFile: false,
     setupNodeEvents(on) {
       on("task", {
         async prepareDB(input?: { flights?: Partial<FlightInput>[] }) {
