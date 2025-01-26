@@ -115,6 +115,9 @@ jobs:
         with:
           name: cypress-screenshots
           path: packages/client/cypress/screenshots
+      - name: List screenshot directory
+        if: always()
+        run: ls -R packages/client/cypress/screenshots
       - name: Stop the project
         if: always()
         run: kill $(cat .pidfile)
