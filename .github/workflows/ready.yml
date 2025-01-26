@@ -75,7 +75,7 @@ jobs:
           install-command: yarn install --frozen-lockfile
           start: yarn start
           wait-on: "http://localhost:5000"
-          spec: packages/client/cypress/e2e/flightsPage.cy.ts
+          spec: ../packages/client/cypress/**/*.cy.{js,jsx,ts,tsx}
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         if: failure()
