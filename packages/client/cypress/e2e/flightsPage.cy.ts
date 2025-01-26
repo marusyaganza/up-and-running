@@ -64,7 +64,7 @@ describe("Flights page", () => {
 
   it.only("shedules a flight correctly", () => {
     submitFlight(flightInput);
-    cy.checkPathName(`/${ROUTES.history}`);
+    cy.checkPathName(`/${ROUTES.upcoming}`);
     checkFlightTableRow(flightInput);
   });
 });
