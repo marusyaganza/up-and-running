@@ -65,6 +65,8 @@ jobs:
           key: cypress-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Generate code
         run: yarn codegen
+      - name: List Cypress directory
+        run: ls -R packages/client/cypress
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
@@ -80,5 +82,3 @@ jobs:
         with:
           name: cypress-screenshots
           path: packages/client/cypress/screenshots
-      - name: List Cypress directory
-        run: ls -R packages/client/cypress
