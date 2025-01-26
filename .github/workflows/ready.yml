@@ -62,7 +62,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: cypress-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Generate code
         run: yarn codegen
       - name: Cypress run
@@ -74,12 +74,11 @@ jobs:
           start: yarn start
           wait-on: "http://localhost:5000"
           spec: packages/client/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}
-      - name: Output Cypress logs
-        if: failure()
-        run: cat ~/.npm/_logs/*-debug.log
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: packages/client/cypress/screenshots
+      - name: List Cypress directory
+        run: ls -R packages/client/cypress
