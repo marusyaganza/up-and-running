@@ -87,7 +87,6 @@ jobs:
     steps:
       - name: Download Cypress screenshots
         uses: actions/download-artifact@v4
-        # if: failure()
         with:
           name: cypress-screenshots
           path: cypress-screenshots
@@ -127,7 +126,6 @@ jobs:
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
       - name: Upload Screenshots to Slack
-        # if: failure()
         run: |
           for file in cypress-screenshots/*.png; do
             if [ -f "$file" ]; then
