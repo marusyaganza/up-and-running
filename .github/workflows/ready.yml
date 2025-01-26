@@ -73,6 +73,7 @@ jobs:
           install-command: yarn install --frozen-lockfile
           start: yarn start
           wait-on: "http://localhost:5000"
+          spec: packages/client/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}
       - name: Output Cypress logs
         if: failure()
         run: cat ~/.npm/_logs/*-debug.log
