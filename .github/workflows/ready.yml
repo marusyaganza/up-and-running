@@ -85,14 +85,14 @@ jobs:
     if: failure()
     runs-on: ubuntu-22.04
     steps:
-    - name: Download Cypress screenshots
-      uses: actions/download-artifact@v4
-      if: failure()
-      with:
-        name: cypress-screenshots
-        path: cypress-screenshots
+      - name: Download Cypress screenshots
+        uses: actions/download-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress-screenshots
 
-    - name: Send Slack notification
+      - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
@@ -126,15 +126,15 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
-    - name: Upload Screenshots to Slack
-      if: failure()
-      run: |
-        for file in cypress-screenshots/*.png; do
-          if [ -f "$file" ]; then
-            curl -F file=@"$file" \
-                 -F "initial_comment=Cypress Failure Screenshot: $(basename "$file")" \
-                 -F channels="${{ secrets.SLACK_CHANNEL_ID }}" \
-                 -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-                 https://slack.com/api/files.upload
-          fi
-        done
+      - name: Upload Screenshots to Slack
+        if: failure()
+        run: |
+          for file in cypress-screenshots/*.png; do
+            if [ -f "$file" ]; then
+              curl -F file=@"$file" \
+                   -F "initial_comment=Cypress Failure Screenshot: $(basename "$file")" \
+                   -F channels="${{ secrets.SLACK_CHANNEL_ID }}" \
+                   -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+                   https://slack.com/api/files.upload
+            fi
+          done
