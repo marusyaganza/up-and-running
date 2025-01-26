@@ -63,6 +63,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          config-file: packages/client/cypress.config.js
           install-command: yarn install --frozen-lockfile
           start: yarn start
           wait-on: "http://localhost:5000"
@@ -71,4 +72,4 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: packages/client/cypress/screenshots
