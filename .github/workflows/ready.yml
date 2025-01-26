@@ -68,10 +68,14 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          config-file: packages/client/cypress.config.ts
+          working-directory: packages/client
+          config-file: cypress.config.ts
           install-command: yarn install --frozen-lockfile
           start: yarn start
           wait-on: "http://localhost:5000"
+      - name: Output Cypress logs
+        if: failure()
+        run: cat ~/.npm/_logs/*-debug.log
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         if: failure()
