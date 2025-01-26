@@ -42,7 +42,7 @@ describe("Flights page", () => {
     });
     cy.get('button[type="submit"]')
       .contains("Schedule flight")
-      .should("be.enabled");
+      .should("be.disabled");
   });
 
   it("validates flight form", () => {
@@ -64,7 +64,7 @@ describe("Flights page", () => {
 
   it.only("shedules a flight correctly", () => {
     submitFlight(flightInput);
-    cy.checkPathName(`/${ROUTES.history}`);
+    cy.checkPathName(`/${ROUTES.upcoming}`);
     checkFlightTableRow(flightInput);
   });
 });
