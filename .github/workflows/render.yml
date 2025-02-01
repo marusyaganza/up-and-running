@@ -1,6 +1,8 @@
 name: Deploy to Render
 on:
   workflow_dispatch:
+  push:
+    branches: [ts-monorepo-ci, develop]
 
 jobs:
   build-and-deploy:
