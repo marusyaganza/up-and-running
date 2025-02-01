@@ -1,0 +1,28 @@
+name: Deploy to Render
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.15.1"
+
+      - uses: ./.github/actions/setup-yarn
+
+      - name: Generate code
+        run: yarn codegen
+
+      - name: Build client
+        run: yarn build:client
+
+      - name: Deploy to Render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          path: packages/client/dist
