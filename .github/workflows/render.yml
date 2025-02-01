@@ -1,8 +1,7 @@
 name: Deploy to Render
+
 on:
   workflow_dispatch:
-  push:
-    branches: [ts-monorepo-ci, develop]
 
 jobs:
   build-and-deploy:
@@ -27,4 +26,9 @@ jobs:
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
-          path: packages/client/dist
+
+      - name: Wait for deployment and verify
+        run: |
+          echo "Deployment triggered, please verify at: https://${{ secrets.RENDER_SERVICE_NAME }}.onrender.com"
+          sleep 60  # Wait for deployment to complete
+          curl -f https://${{ secrets.RENDER_SERVICE_NAME }}.onrender.com
