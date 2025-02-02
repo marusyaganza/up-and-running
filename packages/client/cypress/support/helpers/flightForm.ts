@@ -2,7 +2,7 @@ import { FlightInput } from "../../../src/generated/graphql";
 
 export function fillDatePicker(date: string) {
   const vals = date.split("/");
-  const month = Number.parseInt(vals[0]) - 1 || 0;
+  const month = Number.parseInt(vals[0]) - 2 || 0;
   const day = vals[1];
   const year = vals[2];
   // open date picker
