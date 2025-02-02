@@ -1,5 +1,10 @@
 name: Build and Push Docker Images
 
+# on:
+#   push:
+#     branches:
+#       - develop
+#       - master
 on:
   push:
     branches: [ts-monorepo-ci, develop]
@@ -20,27 +25,39 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Get client version
+        id: client-version
+        run: echo "CLIENT_VERSION=$(node -p "require('./packages/client/package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Get server version
+        id: server-version
+        run: echo "SERVER_VERSION=$(node -p "require('./packages/server/package.json').version")" >> $GITHUB_OUTPUT
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build and push server image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: docker/Dockerfile.server
           push: true
-          tags: mganza/up-and-running:server
+          tags: mganza/up-and-running:server-${{ steps.server-version.outputs.SERVER_VERSION }}
+
       - name: Build and push client image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: docker/Dockerfile.client
           push: true
-          tags: mganza/up-and-running:client
+          tags: mganza/up-and-running:client-${{ steps.client-version.outputs.CLIENT_VERSION }}
 
   notify-success:
     needs: build-and-push
@@ -65,7 +82,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Server Image:* \n*Client Image:* "
+                    "text": "*Server Image:* mganza/up-and-running:server-${{ steps.server-version.outputs.SERVER_VERSION }}\n*Client Image:* mganza/up-and-running:client-${{ steps.client-version.outputs.CLIENT_VERSION }}"
                   }
                 },
                 {
