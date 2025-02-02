@@ -83,7 +83,7 @@ jobs:
         with:
           working-directory: .
           install-command: yarn install --frozen-lockfile
-          start: yarn start
+          start: yarn start:test
           wait-on: "http://localhost:5000"
           project: ./packages/client
       - name: Upload Cypress screenshots

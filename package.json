@@ -16,6 +16,7 @@
     "build:client": "lerna run build --scope '@up/client'",
     "build:server": "lerna run prod --scope '@up/server'",
     "start": "lerna run dev",
+    "start:test": "lerna run start:test",
     "cypress": "lerna run cypress",
     "test": "lerna run test --stream",
     "cypress:run": "lerna run cypress:run",
